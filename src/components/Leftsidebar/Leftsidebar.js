@@ -45,7 +45,7 @@ class leftsidebar extends Component {
                                     </ul>
                                 </li>
                                 <li>
-                                    <Link to='javascript:void(0);'  className={this.state.Tab == 'advertisements' ? 'active':''} ><i className="mdi mdi-airplay"></i> <span> Advertisements <span className="float-right menu-arrow"><i className="mdi mdi-chevron-right"></i></span> </span> </Link>
+                                    <Link to='javascript:void(0);'  className={this.state.Tab == 'advertisements' ? 'active':''} ><i className="mdi mdi-camera-front-variant"></i> <span> Advertisements <span className="float-right menu-arrow"><i className="mdi mdi-chevron-right"></i></span> </span> </Link>
                                         <ul className="submenu">
                                         <li className={this.state.SubTab == 'pending_advertisements' ? 'active':''} onClick={this.setActiveTab.bind(this, 'add_screen','','')}>
                                             <Link to="pending_advertisements"><i class="mdi mdi-lan-pending"></i>Pending Ads</Link></li>
