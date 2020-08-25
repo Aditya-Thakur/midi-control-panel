@@ -34,14 +34,35 @@ class leftsidebar extends Component {
                                         <i className="mdi mdi-account-multiple"></i><span className="badge badge-primary badge-pill float-right"></span> <span> Customers </span>
                                     </Link>
                                 </li>
-                                    <li>
-                                    <Link to='/screens'  className={this.state.Tab == 'screens' ? 'active':''} ><i className="mdi mdi-airplay"></i> <span> Screens <span className="float-right menu-arrow"><i className="mdi mdi-chevron-right"></i></span> </span> </Link>
+                                <li>
+                                    <Link to='javascript:void(0);'  className={this.state.Tab == 'screens' ? 'active':''} ><i className="mdi mdi-airplay"></i> <span> Screens <span className="float-right menu-arrow"><i className="mdi mdi-chevron-right"></i></span> </span> </Link>
                                         <ul className="submenu">
-                                        <li className={this.state.SubTab == 'Addscreen' ? 'active':''} onClick={this.setActiveTab.bind(this, 'Addscreen','','')}><Link to="Addscreen"><i class="mdi mdi-plus-network"></i>Add Screen</Link></li>
-                                        <li className={this.state.SubTab == 'screenlist' ? 'active':''} onClick={this.setActiveTab.bind(this, 'components','screenlist','')}><Link to="screenlist"><i class="mdi mdi-view-list"></i>Screen List</Link></li>
+                                        <li className={this.state.SubTab == 'add_screen' ? 'active':''} onClick={this.setActiveTab.bind(this, 'add_screen','','')}>
+                                            <Link to="add_screen"><i class="mdi mdi-plus-network"></i>Add Screen</Link></li>
+                                        <li className={this.state.SubTab == 'screen_list' ? 'active':''} onClick={this.setActiveTab.bind(this, 'components','screen_list','')}>
+                                            <Link to="screen_list"><i class="mdi mdi-view-list"></i>Screen List</Link></li>
                                         
                                     </ul>
-
+                                </li>
+                                <li>
+                                    <Link to='javascript:void(0);'  className={this.state.Tab == 'advertisements' ? 'active':''} ><i className="mdi mdi-airplay"></i> <span> Advertisements <span className="float-right menu-arrow"><i className="mdi mdi-chevron-right"></i></span> </span> </Link>
+                                        <ul className="submenu">
+                                        <li className={this.state.SubTab == 'pending_advertisements' ? 'active':''} onClick={this.setActiveTab.bind(this, 'add_screen','','')}>
+                                            <Link to="pending_advertisements"><i class="mdi mdi-lan-pending"></i>Pending Ads</Link></li>
+                                        <li className={this.state.SubTab == 'approved_advertisements' ? 'active':''} onClick={this.setActiveTab.bind(this, 'components','screen_list','')}>
+                                            <Link to="approved_advertisements"><i class="mdi mdi-chart-bubble"></i>Approved Ads</Link></li>
+                                        
+                                    </ul>
+                                </li>
+                                <li>
+                                    <Link to='/notification' className={this.state.Tab == 'notification' ? 'waves-effect active':'waves-effect'} onClick={this.setActiveTab.bind(this, 'notification','','')} >
+                                        <i className="mdi mdi-bullhorn"></i><span> Notification </span>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to='/app_content' className={this.state.Tab == 'app_content' ? 'waves-effect active':'waves-effect'} onClick={this.setActiveTab.bind(this, 'app_content','','')} >
+                                        <i className="mdi mdi-cellphone-android"></i><span> App Content </span>
+                                    </Link>
                                 </li>
 
                                 

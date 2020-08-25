@@ -2,7 +2,13 @@ import React , { Component } from 'react';
 import Calendar from '../MainContent/Calendar/Calendar';
 import Dashboard from '../MainContent/Dashboard/Dashboard';
 import Customers from '../MainContent/Customers/Customers';
+import Notification from '../MainContent/Notification/Notification';
+import AppContent from '../MainContent/AppContent/AppContent';
 import { Route,Switch } from 'react-router-dom';
+import add_screen from '../MainContent/Screens/add_screen';
+import screen_list from '../MainContent/Screens/screen_list';
+import pending_advertisements from '../MainContent/Advertisements/pending_advertisements';
+import approved_advertisements from '../MainContent/Advertisements/approved_advertisements';
 import email_inbox from '../MainContent/Email/email_inbox';
 import email_compose from '../MainContent/Email/email_compose';
 import email_read from '../MainContent/Email/email_read';
@@ -123,6 +129,13 @@ class mainbuilder extends Component{
                     <Route path="/icons-ion" component={IconsIon} />
                     <Route path="/icons-fontawesome" component={IconsFontawesome} />
                     <Route path="/customers" component={Customers}/>
+                    <Route path="/add_screen" component={add_screen}/>
+                    <Route path="/screen_list" component={screen_list}/>
+                    <Route path="/pending_advertisements" component={pending_advertisements}/>
+                    <Route path="/approved_advertisements" component={approved_advertisements}/>
+                    <Route path="/notification" component={Notification}/>
+                    <Route path="/app_content" component={AppContent}/>
+                    
                     <Route path="/" component={Dashboard}/>
                 </Switch>
         );
