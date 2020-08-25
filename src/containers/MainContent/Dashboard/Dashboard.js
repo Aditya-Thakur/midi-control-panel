@@ -120,6 +120,35 @@ class Dashboard extends Component{
                                         </div>
                                     </div>
                                 </div>
+                   <div class="col-xl-4 col-md-6">
+                                    <div class="card mini-stat bg-primary">
+                                        <div class="card-body mini-stat-img">
+                                            <div class="mini-stat-icon">
+                                               
+                                            <div id="morris-donut-example2" class="dashboard-charts morris-charts float-right" ></div>
+                                            </div>
+                                            <div class="text-white">
+                                                <h6 class="text-uppercase mb-3">Pending Ads</h6>
+                                                <h4 class="mb-4">1,587</h4>
+                                                <span class="badge badge-info"> +11% </span> <span class="ml-2">From previous period</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-md-6">
+                                    <div class="card mini-stat bg-primary">
+                                        <div class="card-body mini-stat-img">
+                                            <div class="mini-stat-icon">
+                                                <canvas id="lineChart" height="150"></canvas>
+                                             </div>
+                                            <div class="text-white">
+                                                <h6 class="text-uppercase mb-3">Revenue</h6>
+                                                <h4 class="mb-4">$46,782</h4>
+                                                <span class="badge badge-danger"> -29% </span> <span class="ml-2">From previous period</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
             
                            
