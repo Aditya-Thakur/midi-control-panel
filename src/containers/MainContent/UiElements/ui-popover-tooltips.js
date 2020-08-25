@@ -1,0 +1,170 @@
+import React , {Component } from 'react';
+import AUX from '../../../hoc/Aux_';
+import Tinycharts from '../../Chartstypes/Tinycharts';
+import { Button, Popover, PopoverHeader, PopoverBody,Tooltip } from 'reactstrap';
+import { Link } from 'react-router-dom';
+
+class ui_popover_tooltips extends Component{
+
+      constructor(props) {
+    super(props);
+
+    this.toggletop = this.toggletop.bind(this);
+    this.toggleright = this.toggleright.bind(this);
+    this.toggleleft = this.toggleleft.bind(this);
+    this.togglebottom = this.togglebottom.bind(this);
+    this.toggledismiss = this.toggledismiss.bind(this);
+    this.toggledismissclose = this.toggledismissclose.bind(this);
+
+     this.ttop = this.ttop.bind(this);
+     this.tleft = this.tleft.bind(this);
+     this.tright = this.tright.bind(this);
+     this.tbottom = this.tbottom.bind(this);
+
+    this.state = {
+      popovertop: false,
+      popoverleft: false,
+      popoverright: false,
+      popoverbottom: false,
+
+       tttop: false,
+       ttleft: false,
+       ttright: false,
+       ttbottom: false,
+    };
+
+  }
+
+  toggletop() {  this.setState({  popovertop: !this.state.popovertop });  }
+  toggleleft() {  this.setState({  popoverleft: !this.state.popoverleft });  }
+  toggleright() {  this.setState({  popoverright: !this.state.popoverright });  }
+  togglebottom() {  this.setState({  popoverbottom: !this.state.popoverbottom });  }
+  toggledismiss() {  this.setState({  popoverdismiss: !this.state.popoverdismiss });  }
+  toggledismissclose() {  this.setState({  popoverdismiss: false });  }
+
+   ttop() {  this.setState({  tttop: !this.state.tttop  }); }
+   tright() {  this.setState({  ttright: !this.state.ttright  }); }
+   tbottom() {  this.setState({  ttbottom: !this.state.ttbottom  }); }
+   tleft() {  this.setState({  ttleft: !this.state.ttleft  }); }
+
+
+    render(){
+        return(
+            <AUX>
+                <div className="row">
+
+                            <div className="col-sm-12">
+                                <div className="page-title-box">
+                                <h4 className="page-title">Popover & Tooltips</h4>
+                                    <ol className="breadcrumb">
+                                        <li className="breadcrumb-item"><Link to="javascript:void(0);">Lexa</Link></li>
+                                        <li className="breadcrumb-item"><Link to="javascript:void(0);">UI Elements</Link></li>
+                                        <li className="breadcrumb-item active">Popover & Tooltips</li>
+                                    </ol>
+            
+                                    <Tinycharts />
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div className="row">
+                            <div className="col-12">
+                                <div className="card m-b-20">
+                                    <div className="card-body">
+        
+                                        <h4 className="mt-0 header-title">Popovers</h4>
+                                        <p className="text-muted m-b-30 font-14">Add small overlay content, like those found in iOS, to any element for housing secondary information.</p>
+        
+                                
+                                            
+                                        <Button id="Popovertop" onClick={this.toggletop}>
+                                          Popover on top
+                                        </Button>
+                                        <Popover placement="top" isOpen={this.state.popovertop} target="Popovertop" toggle={this.toggletop}>
+                                          <PopoverHeader>Popover Title</PopoverHeader>
+                                          <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</PopoverBody>
+                                        </Popover>
+
+
+       
+                                        <Button id="Popoverright" onClick={this.toggleright}>
+                                          Popover on right
+                                        </Button>
+                                        <Popover placement="right" isOpen={this.state.popoverright} target="Popoverright" toggle={this.toggleright}>
+                                          <PopoverHeader>Popover Title</PopoverHeader>
+                                          <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</PopoverBody>
+                                        </Popover>
+
+
+                                          <Button id="Popoverleft" onClick={this.toggleleft}>
+                                          Popover on left
+                                        </Button>
+                                        <Popover placement="left" isOpen={this.state.popoverleft} target="Popoverleft" toggle={this.toggleleft}>
+                                          <PopoverHeader>Popover Title</PopoverHeader>
+                                          <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</PopoverBody>
+                                        </Popover>
+
+                                         <Button id="Popoverbottom" onClick={this.togglebottom}>
+                                          Popover on bottom
+                                        </Button>
+                                        <Popover placement="bottom" isOpen={this.state.popoverbottom} target="Popoverbottom" toggle={this.togglebottom}>
+                                          <PopoverHeader>Popover Title</PopoverHeader>
+                                          <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</PopoverBody>
+                                        </Popover>
+        
+
+                                       <Button id="Popoverdismiss"  className="btn btn-primary waves-effect waves-light mo-mb-2" onClick={this.toggledismiss}>
+                                          Dismissible popover
+                                        </Button>
+                                        <Popover   onClick={this.toggledismissclose} placement="bottom" isOpen={this.state.popoverdismiss} target="Popoverdismiss" toggle={this.toggledismiss}>
+                                          <PopoverHeader>Popover Title</PopoverHeader>
+                                          <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</PopoverBody>
+                                        </Popover>
+        
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+        
+        
+                        <div className="row">
+                            <div className="col-12">
+                                <div className="card m-b-20">
+                                    <div className="card-body">
+        
+                                        <h4 className="mt-0 header-title">Tooltips</h4>
+                                        <p className="text-muted m-b-30 font-14">Hover over the links below to see tooltips:</p>
+        
+                                      
+                                        <button type="button" className="btn btn-secondary mo-mb-2" data-toggle="tooltip" data-placement="top" id="Tooltiptop" title="Tooltip on top"> Tooltip on top</button>
+                                            <Tooltip placement="top" isOpen={this.state.tttop} target="Tooltiptop" toggle={this.ttop}>
+                                              Hello world!
+                                            </Tooltip>
+
+                                             <button type="button" className="btn btn-secondary mo-mb-2" data-toggle="tooltip" data-placement="bottom" id="Tooltipbottom" title="Tooltip on bottom"> Tooltip on Bottom</button>
+                                            <Tooltip placement="bottom" isOpen={this.state.ttbottom} target="Tooltipbottom" toggle={this.tbottom}>
+                                              Hello world!
+                                            </Tooltip>
+
+                                             <button type="button" className="btn btn-secondary mo-mb-2" data-toggle="tooltip" data-placement="left" id="Tooltipleft" title="Tooltip on left"> Tooltip on Left</button>
+                                            <Tooltip placement="left" isOpen={this.state.ttleft} target="Tooltipleft" toggle={this.tleft}>
+                                              Hello world!
+                                            </Tooltip>
+
+                                             <button type="button" className="btn btn-secondary mo-mb-2" data-toggle="tooltip" data-placement="right" id="Tooltipright" title="Tooltip on right"> Tooltip on Right</button>
+                                            <Tooltip placement="right" isOpen={this.state.ttright} target="Tooltipright" toggle={this.tright}>
+                                              Hello world!
+                                            </Tooltip>
+
+
+        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            </AUX>
+        );
+    }
+}
+
+export default ui_popover_tooltips;
