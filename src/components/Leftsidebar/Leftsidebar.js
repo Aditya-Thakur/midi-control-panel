@@ -26,14 +26,25 @@ class leftsidebar extends Component {
                                 <li className="menu-title">Main</li>
                                 <li>
                                     <Link to='/' className={this.state.Tab == 'dashboard' ? 'waves-effect active':'waves-effect'} onClick={this.setActiveTab.bind(this, 'dashboard','','')} >
-                                        <i className="qmdi mdi-view-dashboard"></i><span className="badge badge-primary badge-pill float-right">2</span> <span> Dashboard </span>
+                                        <i className="mdi mdi-view-dashboard"></i><span className="badge badge-primary badge-pill float-right">2</span> <span> Dashboard </span>
                                     </Link>
                                 </li>
                                 <li>
                                     <Link to='/customers' className={this.state.Tab == 'customers' ? 'waves-effect active':'waves-effect'} onClick={this.setActiveTab.bind(this, 'customers','','')} >
-                                        <i className="mdi mdi-account-multiple"></i><span className="badge badge-primary badge-pill float-right">2</span> <span> Customers </span>
+                                        <i className="mdi mdi-account-multiple"></i><span className="badge badge-primary badge-pill float-right"></span> <span> Customers </span>
                                     </Link>
                                 </li>
+                                    <li>
+                                    <Link to='/screens'  className={this.state.Tab == 'screens' ? 'active':''} ><i className="mdi mdi-airplay"></i> <span> Screens <span className="float-right menu-arrow"><i className="mdi mdi-chevron-right"></i></span> </span> </Link>
+                                        <ul className="submenu">
+                                        <li className={this.state.SubTab == 'Addscreen' ? 'active':''} onClick={this.setActiveTab.bind(this, 'Addscreen','','')}><Link to="Addscreen"><i class="mdi mdi-plus-network"></i>Add Screen</Link></li>
+                                        <li className={this.state.SubTab == 'screenlist' ? 'active':''} onClick={this.setActiveTab.bind(this, 'components','screenlist','')}><Link to="screenlist"><i class="mdi mdi-view-list"></i>Screen List</Link></li>
+                                        
+                                    </ul>
+
+                                </li>
+
+                                
                                 <li>
                                     <Link to='/calendar' className={this.state.Tab == 'calendar' ? 'waves-effect active':'waves-effect'} onClick={this.setActiveTab.bind(this, 'calendar','','')} >
                                         <i className="mdi mdi-calendar-check"></i><span> Calendar </span></Link>

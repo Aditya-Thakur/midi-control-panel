@@ -113,7 +113,7 @@ class Dashboard extends Component{
                                                 <i className="mdi mdi-briefcase-check float-right"></i>
                                             </div>
                                             <div className="text-white">
-                                                <h6 className="text-uppercase mb-3">PRODUCT SOLD</h6>
+                                                <h6 className="text-uppercase mb-3">ONGOING TRANSACTION</h6>
                                                 <h4 className="mb-4">1890</h4>
                                                 <span className="badge badge-info"> +89% </span> <span className="ml-2">From previous period</span>
                                             </div>
@@ -121,6 +121,7 @@ class Dashboard extends Component{
                                     </div>
                                 </div>
                             </div>
+            
                            
             
                             <div className="row">

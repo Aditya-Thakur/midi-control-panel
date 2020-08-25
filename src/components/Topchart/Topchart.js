@@ -6,10 +6,10 @@ const topchart = ( props ) => (
                 <div className="topbar-left">
                     <Link to="/" className="logo">
                         <span>
-                            <img src="assets/images/logo-light.png" alt="" height="18" />
+                            <img src="assets/images/midi.jpg" alt="" height="18" />
                         </span>
                         <i>
-                            <img src="assets/images/logo-sm.png" alt="" height="22" />
+                            <img src="assets/images/midi_logo.jpg" alt="" height="22" />
                         </i>
                     </Link>
                 </div>
