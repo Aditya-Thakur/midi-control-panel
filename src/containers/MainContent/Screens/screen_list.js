@@ -9,7 +9,7 @@ import firebase from '.../../../src/firebase';
 class screen_list extends Component{
   constructor(props){
     super (props);
-    this.usersDataRef=firebase.database().ref('UsersData');
+    this.usersDataRef=firebase.database().ref('AvailableLocations');
     this.state={
       usersDataList:[],
 
@@ -17,62 +17,22 @@ class screen_list extends Component{
   }
 
   componentDidMount(){
-    // this.usersDataRef.on('value',(snapshot)=>{
-    //   let rows=[];
-    //   snapshot.forEach(userSnapshot => {
-    //     let data = userSnapshot.val();
+    this.usersDataRef.on('value',(snapshot)=>{
+      let rows=[];
+      snapshot.forEach(userSnapshot => {
+        let data = userSnapshot.val();
+        Object.values(data.screenData).forEach(screen=>{
+          rows.push(
+            screen
+          );
+        })
         
-    //     rows.push({
-    //       "company":data.userPersonalDetails.company,
-    //       "name":data.userPersonalDetails.firstName+" "+data.userPersonalDetails.lastName,
-    //       "email":data.userPersonalDetails.email,
-    //       "active_ads":data.userAdvertisementDetails ? this.countPendingAds(data.userAdvertisementDetails.singleAdvertisementDetails) : 0,
-    //       "rejected_ads":data.userAdvertisementDetails ? this.countRejectedAds(data.userAdvertisementDetails.singleAdvertisementDetails) : 0,
-    //       "pending_ads": data.userAdvertisementDetails ? this.countPendingAds(data.userAdvertisementDetails.singleAdvertisementDetails) : 0,
-    //       "invested":data.userWalletDetails.transactionsDetails?this.getTotalInvestment(data.userWalletDetails.transactionsDetails):0,
-    //       "status":String(data.userPersonalDetails.userAccountStatus)
-    //     });
-    // });  
-    // this.setState({
-    //     usersDataList:rows
-    //   });
-    // });
-  }
-
-  countPendingAds(singleAdvertisementDetails){
-      let sum=0
-      singleAdvertisementDetails.forEach(advDetails=>{
-          if(advDetails.advOverallStatus==2){
-            sum+=1
-          }
-      })
-      return sum;
-  };
-  countRejectedAds(singleAdvertisementDetails){
-    let sum=0
-    singleAdvertisementDetails.forEach(advDetails=>{
-      sum+=Number(advDetails.rejectionCount)
-    })
-    return sum;
-};
-countApprovedAds(singleAdvertisementDetails){
-    let sum=0
-    singleAdvertisementDetails.forEach(advDetails=>{
-          if(advDetails.advOverallStatus==1){
-            sum+=1
-          }
-      })
-      return sum;
-};
-getTotalInvestment(transactionsDetails){
-    let sum=0
-    transactionsDetails.forEach(transaction=>{
-        if(transaction.transactionStatus==2){
-            sum+=-(Number(transaction.transactionAmount))
-        }
+    });  
+    this.setState({
+        usersDataList:rows
+      });
     });
-    return sum
-}
+  }
 
 render(){
 
@@ -83,19 +43,19 @@ render(){
         columns: [
           {
             label: 'Screen_id',
-            field: 'screen_id',
+            field: 'screenId',
             sort: 'asc',
             width: 150
           },
           {
             label: 'Screen Location',
-            field: 'screen_location',
+            field: 'screenLocation',
             sort: 'asc',
             width: 270
           },
           {
             label: 'Screen Status',
-            field: 'screen_status',
+            field: 'screenStatus',
             sort: 'asc',
             width: 100
           },
@@ -107,7 +67,7 @@ render(){
           },
           {
             label: 'Screen Price',
-            field: 'screen_price',
+            field: 'screenPrice',
             sort: 'asc',
             width: 150
           },
