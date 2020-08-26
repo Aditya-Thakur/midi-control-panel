@@ -7,8 +7,42 @@ import { Link } from 'react-router-dom';
 import firebase from '.../../../src/firebase';
 
 class approved_advertisements extends Component{
+
+    constructor(props) {
+        super(props);
+        this.usersDataRef = firebase.database().ref('UsersData');
+        this.state = {
+            approvedAdvList: [],
+
+        }
+    }
+
+    componentDidMount() {
+        this.usersDataRef.on('value', (snapshot) => {
+            let rows = [];
+            snapshot.forEach(userSnapshot => {
+                let data = userSnapshot.val();
+                if(data.userAdvertisementDetails!=null){
+                    Object.values(data.userAdvertisementDetails.singleAdvertisementDetails).forEach(adv => {
+                        // rows.push(
+                        //     adv
+                        // );
+                        Object.values(adv.screens).forEach(screen=>{
+                            if(screen.screenApprovedStatus==1){
+                                rows.push(screen)
+                            }
+                        })
+                    })
+                }
+            });
+            this.setState({
+                approvedAdvList: rows
+            });
+        });
+    }
   render(){
         return(
+            console.log(this.state.approvedAdvList)
             <AUX>
                 <div className="row">
                             <div className="col-sm-12">
