@@ -7,7 +7,42 @@ import { Link } from 'react-router-dom';
 import firebase from '.../../../src/firebase';
 
 class pending_advertisements extends Component {
+
+    constructor(props) {
+        super(props);
+        this.usersDataRef = firebase.database().ref('UsersData');
+        this.state = {
+            pendingAdvList: [],
+
+        }
+    }
+
+    componentDidMount() {
+        this.usersDataRef.on('value', (snapshot) => {
+            let rows = [];
+            snapshot.forEach(userSnapshot => {
+                let data = userSnapshot.val();
+                if(data.userAdvertisementDetails!=null){
+                    Object.values(data.userAdvertisementDetails.singleAdvertisementDetails).forEach(adv => {
+                        // rows.push(
+                        //     adv
+                        // );
+                        Object.values(adv.screens).forEach(screen=>{
+                            if(screen.screenApprovedStatus==0){
+                                rows.push(screen)
+                            }
+                        })
+                    })
+                }
+            });
+            this.setState({
+                pendingAdvList: rows
+            });
+        });
+    }
     render() {
+
+        console.log(this.state.pendingAdvList)
         return (
             <AUX>
                 <div className="row">
@@ -29,14 +64,14 @@ class pending_advertisements extends Component {
                         <div className="card m-b-20">
                             <div className="card-body">
                                 <h4 className="mt-0 header-title">Advertisement Name</h4>
-                                <p className="text-muted m-b-30">
+                                <div className="text-muted m-b-30">
                                     <ul className="mt-0 header-title">
                                         <li>Screen No <span className="badge badge-danger float-right">3</span></li>
                                         <li >Total Amount Paid <span className="badge badge-primary float-right">$50</span></li>
                                         <li>Company Name <span className="badge badge-primary float-right">Amazon Corp</span></li>
                                     </ul>
 
-                                </p>
+                                </div>
 
                                 <a className="image-popup-no-margins" href="assets/images/small/img-5.jpg">
                                     <img className="card-img-top img-fluid m-b-30" src="assets/images/small/img-5.jpg" alt="Card image cap" /></a>
