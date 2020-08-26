@@ -24,9 +24,6 @@ class pending_advertisements extends Component {
                 let data = userSnapshot.val();
                 if(data.userAdvertisementDetails!=null){
                     Object.values(data.userAdvertisementDetails.singleAdvertisementDetails).forEach(adv => {
-                        // rows.push(
-                        //     adv
-                        // );
                         Object.values(adv.screens).forEach(screen=>{
                             if(screen.screenApprovedStatus==0){
                                 rows.push(screen)
