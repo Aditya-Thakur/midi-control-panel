@@ -9,15 +9,15 @@ import firebase from '.../../../src/firebase';
 class screen_list extends Component{
   constructor(props){
     super (props);
-    this.usersDataRef=firebase.database().ref('AvailableLocations');
+    this.screensDataRef=firebase.database().ref('AvailableLocations');
     this.state={
-      usersDataList:[],
+      screensDataList:[],
 
     }
   }
 
   componentDidMount(){
-    this.usersDataRef.on('value',(snapshot)=>{
+    this.screensDataRef.on('value',(snapshot)=>{
       let rows=[];
       snapshot.forEach(userSnapshot => {
         let data = userSnapshot.val();
@@ -29,14 +29,14 @@ class screen_list extends Component{
         
     });  
     this.setState({
-        usersDataList:rows
+        screensDataList:rows
       });
     });
   }
 
 render(){
 
-    console.log(this.state.usersDataList)
+    console.log(this.state.screensDataList)
 
 
     let data = {
@@ -78,7 +78,7 @@ render(){
             width: 100
           }
         ],
-        rows: this.state.usersDataList
+        rows: this.state.screensDataList
     };
     return(
         <AUX>
