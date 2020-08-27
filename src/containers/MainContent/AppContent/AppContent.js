@@ -12,9 +12,15 @@ class AppContent extends Component {
         super(props);
         this.appBannersDataRef = firebase.database().ref('AppData/app_banners');
         this.state = {
+            image: null,
+            url: '',
+            progress: 0,
             appBannersDataList: [],
-
         }
+        this.handleChange = this
+            .handleChange
+            .bind(this);
+        this.handleUpload = this.handleUpload.bind(this);
     }
 
     componentDidMount() {
@@ -24,6 +30,42 @@ class AppContent extends Component {
             });
         });
     }
+    handleChange = e => {
+        if (e.target.files[0]) {
+            const image = e.target.files[0];
+            this.setState(() => ({ image }));
+        }
+    }
+    handleUpload = (e) => {
+        e.preventDefault();
+        const { image } = this.state;
+        const uploadTask = firebase.storage().ref(`BannerImages/${image.name}`).put(image);
+        uploadTask.on('state_changed',
+            (snapshot) => {
+                // progrss function ....
+                const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                this.setState({ progress });
+            },
+            (error) => {
+                // error function ....
+                console.log(error);
+            },
+            () => {
+                // complete function ....
+                firebase.storage().ref('BannerImages').child(image.name).getDownloadURL().then(url => {
+                    this.setState({ url });
+                    let localBannerData={}
+                    localBannerData.banner_name=this.banner_name.value
+                    localBannerData.banner_url=url
+                    this.appBannersDataRef.child("banner005")
+                    .set(localBannerData).then(_ => {
+                        alert("Banner Added.")
+                      });
+                })
+            }
+        )
+    }
+
     render() {
         console.log(this.state.appBannersDataList);
         return (
@@ -49,27 +91,25 @@ class AppContent extends Component {
                                 <h4 className="mt-0 header-title">ADD NEW BANNER</h4>
                                 <p className="text-muted m-b-30 ">You can manage Image here.</p>
 
-                                <form className="" action="#">
                                     <div className="form-group">
                                         <label>Banner Title *</label>
-                                        <input type="text" className="form-control" required placeholder="Enter Banner Title" />
+                                        <input type="text" className="form-control" required placeholder="Enter Banner Title" name="banner_name" ref={(c) => this.banner_name = c}/>
                                     </div>
 
                                     <div className="form-group">
                                         <label>Image *</label><br></br>
-                                        <input type="file" className="filestyle" data-buttonname="btn-secondary" />
+                                        <input type="file" className="filestyle" data-buttonname="btn-secondary" onChange={this.handleChange}/>
                                     </div>
 
 
                                     <div className="form-group button-items">
-                                        <button type="submit" className="btn btn-primary waves-effect waves-light">
+                                        <button type="submit" className="btn btn-primary waves-effect waves-light" onClick={this.handleUpload}>
                                             Submit
                                                     </button>
                                         <button type="reset" className="btn btn-secondary waves-effect m-l-5">
                                             Cancel
                                                     </button>
                                     </div>
-                                </form>
                             </div>
                         </div>
                     </div>
@@ -125,11 +165,11 @@ class AppContent extends Component {
                         </div>
                     </div>
                 </div>
-            <div>
-        </div>
+                <div>
+                </div>
 
 
-        </AUX>
+            </AUX>
         );
     }
 }
