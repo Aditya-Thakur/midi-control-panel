@@ -4,7 +4,9 @@ import AUX from '../../../hoc/Aux_';
 import { MDBDataTable } from 'mdbreact';
 import { Link } from 'react-router-dom';
 
-import StatusButton from '../../MainContent/StatusButton/StatusButton'
+import StatusButton from '../Buttons/StatusButton'
+import TableEditButtons from '../Buttons/TableEditButtons'
+
 
 import firebase from '.../../../src/firebase';
 
@@ -28,7 +30,8 @@ class screen_list extends Component{
       snapshot.forEach(userSnapshot => {
         let data = userSnapshot.val();
         Object.values(data.screenData).forEach(screen=>{
-          screen.action=<StatusButton switchStatus={screen.screenStatus} switchId={screen.screenId} screenData={screen}/>
+          screen.screenStatus=<StatusButton switchStatus={screen.screenStatus} switchId={screen.screenId} screenData={screen}/>
+          screen.action=<TableEditButtons screenData={screen}/>
           rows.push(
             screen
           );
