@@ -48,9 +48,9 @@ class add_screen extends Component {
                       <label className="control-label">Select Location</label>
                       <select className="form-control select2">
                         <option>Select</option>
-                        <optgroup label="Alaskan/Hawaiian Time Zone">
-                          <option value="AK">Alaska</option>
-                          <option value="HI">Hawaii</option>
+                        <optgroup label="Available Locations">
+                          <option value="Delhi">Delhi</option>
+                          <option value="Greater Noida">Greater Noida</option>
                         </optgroup>
                       </select></div>
                   </div>

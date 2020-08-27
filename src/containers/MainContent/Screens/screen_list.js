@@ -30,10 +30,11 @@ class screen_list extends Component{
       snapshot.forEach(userSnapshot => {
         let data = userSnapshot.val();
         Object.values(data.screenData).forEach(screen=>{
-          screen.screenStatus=<StatusButton switchStatus={screen.screenStatus} switchId={screen.screenId} screenData={screen}/>
-          screen.action=<TableEditButtons screenData={screen}/>
+          const localScreen=screen
+          localScreen.screen_status=<StatusButton screenData={screen}/>
+          localScreen.action=<TableEditButtons screenData={screen}/>
           rows.push(
-            screen
+            localScreen
           );
         })
         
@@ -61,7 +62,7 @@ render(){
           },
           {
             label: 'Screen Status',
-            field: 'screenStatus',
+            field: 'screen_status',
             sort: 'asc',
             width: 100
           },
