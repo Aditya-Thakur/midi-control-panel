@@ -4,6 +4,8 @@ import AUX from '../../../hoc/Aux_';
 import { MDBDataTable } from 'mdbreact';
 import { Link } from 'react-router-dom';
 
+import StatusButton from '../../MainContent/StatusButton/StatusButton'
+
 import firebase from '.../../../src/firebase';
 
 class screen_list extends Component{
@@ -12,9 +14,13 @@ class screen_list extends Component{
     this.screensDataRef=firebase.database().ref('AvailableLocations');
     this.state={
       screensDataList:[],
-
     }
+    //CSS Switch 
+    this.changeswitch3 = this.changeswitch3.bind(this);
   }
+
+  changeswitch3() { this.setState({ switch3: !this.state.switch3 }); }
+
 
   componentDidMount(){
     this.screensDataRef.on('value',(snapshot)=>{
@@ -22,6 +28,7 @@ class screen_list extends Component{
       snapshot.forEach(userSnapshot => {
         let data = userSnapshot.val();
         Object.values(data.screenData).forEach(screen=>{
+          screen.action=<StatusButton switchStatus={screen.screenStatus} switchId={screen.screenId} screenData={screen}/>
           rows.push(
             screen
           );
@@ -35,10 +42,6 @@ class screen_list extends Component{
   }
 
 render(){
-
-    console.log(this.state.screensDataList)
-
-
     let data = {
         columns: [
           {
@@ -75,7 +78,7 @@ render(){
             label: 'Action',
             field: 'action',
             sort: 'asc',
-            width: 100
+            width: 100,
           }
         ],
         rows: this.state.screensDataList

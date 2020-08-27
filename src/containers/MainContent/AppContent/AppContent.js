@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 import firebase from '.../../../src/firebase';
 
+
 class AppContent extends Component {
 
     constructor(props) {
