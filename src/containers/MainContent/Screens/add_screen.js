@@ -50,7 +50,7 @@ class add_screen extends Component {
                 <li className="breadcrumb-item"><Link to="javascript:void(0);">Add Screen</Link></li>
                 <li className="breadcrumb-item active">Screen Details</li>
               </ol>
-              <Tinycharts />
+              
             </div>
           </div>
         </div>
@@ -85,14 +85,14 @@ class add_screen extends Component {
                   <div className="col-6">
                     <div className="form-group">
                       <label className="col-form-label">City</label>
-                      <input className="form-control" defaultValue="" type="text" name='screenCity' ref={(c) => this.screenCity = c} />
+                      <input className="form-control" defaultValue="" required placeholder="City Name" type="text" name='screenCity' ref={(c) => this.screenCity = c} />
                     </div>
 
                   </div>
                   <div className="col-6">
                     <div className="form-group">
                       <label className="col-form-label">Pin Code</label>
-                      <input className="form-control" defaultValue="" type="text" name="pin_code" ref={(c) => this.pin_code = c} />
+                      <input className="form-control" defaultValue="" type="text" required placeholder="PinCode" name="pin_code" ref={(c) => this.pin_code = c} />
                     </div>
 
                   </div>
@@ -101,13 +101,13 @@ class add_screen extends Component {
                   <div className="col-6">
                     <div className="form-group">
                       <label className="col-form-label">Impressions Per Day</label>
-                      <input className="form-control" type="number" defaultValue="" name="impression" ref={(c) => this.impression = c} />
+                      <input className="form-control" type="number" placeholder="Enter only digits" defaultValue="" name="impression" ref={(c) => this.impression = c} />
                     </div>
                   </div>
                   <div className="col-6">
                     <div className="form-group">
-                      <label className="col-form-label">Gender Ratio</label>
-                      <input className="form-control" type="number" defaultValue="" name="gender_ratio" ref={(c) => this.gender_ratio = c} />
+                      <label className="col-form-label">Gender Ratio (M/F)</label>
+                      <input className="form-control" placeholder="Enter Male over female ratio" type="number" defaultValue="" name="gender_ratio" ref={(c) => this.gender_ratio = c} />
                     </div>
                   </div>
                 </div>
@@ -121,7 +121,7 @@ class add_screen extends Component {
                   <div className="col-12">
                     <div className="form-group">
                       <label className="col-form-label">Price</label>
-                      <input className="form-control" type="number" defaultValue="" name="price" ref={(c) => this.price = c} />
+                      <input className="form-control" type="number" required placeholder="Amount per day" defaultValue="" name="price" ref={(c) => this.price = c} />
                     </div>
                   </div>
                 </div>

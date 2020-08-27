@@ -145,7 +145,7 @@ class Customers extends Component{
                                         <li className="breadcrumb-item"><Link to="javascript:void(0);">Tables</Link></li>
                                         <li className="breadcrumb-item active">Customer List</li>
                                     </ol>
-                                    <Tinycharts />
+                                    
                                 </div>
                             </div>
                         </div>
