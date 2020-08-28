@@ -4,6 +4,8 @@ import Tinycharts from '../../Chartstypes/Tinycharts';
 import { Link } from 'react-router-dom';
 import firebase from '.../../../src/firebase';
 
+import SearchLocationInput from '../Maps/SearchLocationInput'
+
 class add_screen extends Component {
 
   constructor(props) {
@@ -63,6 +65,7 @@ class add_screen extends Component {
                 <h4 className="mt-0 header-title">Location</h4>
 
                 <p className="text-muted m-b-30 font-14">Mobile App Notifications allow you to keep in touch with your users in a non-intrusive way by providing timely messages and helpful and relevant information like rewards descriptions and special offers. They also provide a great way of getting users to engage in new promotions or features...</p>
+                <SearchLocationInput/>
                 <div className="row">
                   <div className="col-6">
                     <div className="form-group">
@@ -78,7 +81,7 @@ class add_screen extends Component {
                   <div className="col-6">
                     <label>Screen Status</label><br></br>
                     <input type="checkbox" id="screenStatus" switch="bool" checked={this.state.switch ? "checked" : ""} onChange={this.changeswitch} />
-                    <label for="screenStatus" data-on-label="On" data-off-label="Off"></label>
+                    <label htmlFor="screenStatus" data-on-label="On" data-off-label="Off"></label>
                   </div>
                 </div>
                 <div className="row">

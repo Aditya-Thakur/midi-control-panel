@@ -90,7 +90,7 @@
                                     <div className="col-6">
                                         <label>Screen Status</label><br></br>
                                         <input type="checkbox" id={this.props.screenData.screenId + "m"} switch="bool" checked={this.state.switch ? "checked" : ""} onChange={this.changeswitch} />
-                                        <label for={this.props.screenData.screenId + "m"} data-on-label="On" data-off-label="Off"></label>
+                                        <label htmlFor={this.props.screenData.screenId + "m"} data-on-label="On" data-off-label="Off"></label>
                                     </div>
                                 </div>
                                 <div className="row">

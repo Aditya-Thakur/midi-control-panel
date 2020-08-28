@@ -38,9 +38,9 @@ class leftsidebar extends Component {
                                     <Link to='javascript:void(0);'  className={this.state.Tab == 'screens' ? 'active':''} ><i className="mdi mdi-airplay"></i> <span> Screens <span className="float-right menu-arrow"><i className="mdi mdi-chevron-right"></i></span> </span> </Link>
                                         <ul className="submenu">
                                         <li className={this.state.SubTab == 'add_screen' ? 'active':''} onClick={this.setActiveTab.bind(this, 'add_screen','','')}>
-                                            <Link to="add_screen"><i class="mdi mdi-plus-network"></i>Add Screen</Link></li>
+                                            <Link to="add_screen"><i className="mdi mdi-plus-network"></i>Add Screen</Link></li>
                                         <li className={this.state.SubTab == 'screen_list' ? 'active':''} onClick={this.setActiveTab.bind(this, 'components','screen_list','')}>
-                                            <Link to="screen_list"><i class="mdi mdi-view-list"></i>Screen List</Link></li>
+                                            <Link to="screen_list"><i className="mdi mdi-view-list"></i>Screen List</Link></li>
                                         
                                     </ul>
                                 </li>
@@ -48,9 +48,9 @@ class leftsidebar extends Component {
                                     <Link to='javascript:void(0);'  className={this.state.Tab == 'advertisements' ? 'active':''} ><i className="mdi mdi-camera-front-variant"></i> <span> Advertisements <span className="float-right menu-arrow"><i className="mdi mdi-chevron-right"></i></span> </span> </Link>
                                         <ul className="submenu">
                                         <li className={this.state.SubTab == 'pending_advertisements' ? 'active':''} onClick={this.setActiveTab.bind(this, 'add_screen','','')}>
-                                            <Link to="pending_advertisements"><i class="mdi mdi-lan-pending"></i>Pending Ads</Link></li>
+                                            <Link to="pending_advertisements"><i className="mdi mdi-lan-pending"></i>Pending Ads</Link></li>
                                         <li className={this.state.SubTab == 'approved_advertisements' ? 'active':''} onClick={this.setActiveTab.bind(this, 'components','screen_list','')}>
-                                            <Link to="approved_advertisements"><i class="mdi mdi-chart-bubble"></i>Approved Ads</Link></li>
+                                            <Link to="approved_advertisements"><i className="mdi mdi-chart-bubble"></i>Approved Ads</Link></li>
                                         
                                     </ul>
                                 </li>
