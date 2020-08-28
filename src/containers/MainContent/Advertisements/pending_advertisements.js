@@ -33,7 +33,8 @@ class pending_advertisements extends Component {
                         })
                         rows.push({
                             "advId":adv.advId,
-                            "screens":advScreens
+                            "screens":advScreens,
+                            "advData":adv,
                         })
                     })
                 }
