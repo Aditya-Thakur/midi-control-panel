@@ -45,6 +45,9 @@ class screen_list extends Component{
     });
   }
 
+  componentWillUnmount() {
+    this.screensDataRef.off();
+ }
 render(){
     let data = {
         columns: [

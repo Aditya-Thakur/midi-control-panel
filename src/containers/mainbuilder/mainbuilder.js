@@ -131,8 +131,8 @@ class mainbuilder extends Component{
                     <Route path="/customers" component={Customers}/>
                     <Route path="/add_screen" component={add_screen}/>
                     <Route path="/screen_list" component={screen_list}/>
-                    <Route path="/pending_advertisements" component={pending_advertisements}/>
-                    <Route path="/approved_advertisements" component={approved_advertisements}/>
+                    <Route path="/pending_review_advertisements" component={pending_advertisements}/>
+                    <Route path="/reviewed_advertisements" component={approved_advertisements}/>
                     <Route path="/notification" component={Notification}/>
                     <Route path="/app_content" component={AppContent}/>
                     

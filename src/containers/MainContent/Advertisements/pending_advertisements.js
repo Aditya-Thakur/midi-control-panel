@@ -22,7 +22,7 @@ class pending_advertisements extends Component {
         this.usersDataRef.on('value', (snapshot) => {
             let rows = [];
             snapshot.forEach(userSnapshot => {
-                let data = userSnapshot.val();
+                let data = userSnapshot.val();                
                 if (data.userAdvertisementDetails != null) {
                     Object.values(data.userAdvertisementDetails.singleAdvertisementDetails).forEach(adv => {
                         let advScreens = [];
@@ -35,6 +35,7 @@ class pending_advertisements extends Component {
                             "advId":adv.advId,
                             "screens":advScreens,
                             "advData":adv,
+                            "userId":data.userId
                         })
                     })
                 }

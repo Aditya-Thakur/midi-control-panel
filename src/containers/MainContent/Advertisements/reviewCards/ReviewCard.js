@@ -23,7 +23,7 @@ class ReviewCard extends Component {
     }
 
     render(){
-        console.log(this.props.advData)
+        // console.log(this.props.advData)
         return <AUX>
             <div className="col-lg-4">
                         <div className="card">
@@ -45,7 +45,8 @@ class ReviewCard extends Component {
                             </div>
                             <div className="collapse show" id={this.props.advId+"collapse_screen"}>
                                 <ul className="list-group list-group-flush">
-                                {this.props.advScreens.map(item => <ScreenListItem key={item.screenId} screenDetails={item} />)}
+                                {this.props.advScreens.map((item,index) =>
+                                <ScreenListItem key={item.screenId} screenIndex={index} screenDetails={item} userId={this.props.userId} advIndex={this.props.advIndex} advScreens={this.props.advScreens} />)}
                                 </ul>
                             </div>
                             <div className="card-body" data-toggle="collapse" data-target={"#"+this.props.advId+"collapse_user_data"} aria-expanded="false" aria-controls={this.props.advId+"collapse_user_data"}>
@@ -59,9 +60,9 @@ class ReviewCard extends Component {
                                 </div>
                             </div>
                             <div className="collapse" id={this.props.advId+"collapse_user_data"}>
-                                <div className="card card-body">
-                                    <ul className="mt-0 header-title">
-                                        <li>City <span className="badge badge-danger float-right">{this.props.advData.city}</span></li>
+                                <div className="card-body">
+                                    <ul className="ml-3 list-group list-group-flush">
+                                        <li>City <span className="badge badge-danger float-right">{this.props.advData.scrrenCity}</span></li>
                                         <li>Start Date <span className="badge badge-success float-right">{this.getDateFromTimestamp(this.props.advData.startFrom,"D")}</span> End Date <span className="badge badge-info float-right">{this.getDateFromTimestamp(this.props.advData.endOn,"D")}</span>  </li>
                                         <li>Start Time <span className="badge badge-success float-right">{this.getDateFromTimestamp(this.props.advData.startFrom,"T")}</span>  End Time <span className="badge badge-info float-right">{this.getDateFromTimestamp(this.props.advData.endOn,"T")}</span> </li>
                                         <li>Age Range: <span className="badge badge-warning float-right">{this.props.advData.advAgePref}</span></li>

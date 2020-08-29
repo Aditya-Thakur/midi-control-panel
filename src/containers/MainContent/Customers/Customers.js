@@ -3,6 +3,7 @@ import Tinycharts from '../../../containers/Chartstypes/Tinycharts';
 import AUX from '../../../hoc/Aux_';
 import { MDBDataTable } from 'mdbreact';
 import { Link } from 'react-router-dom';
+import StatusButton from '../Buttons/StatusButton'
 
 import firebase from '.../../../src/firebase';
 
@@ -12,8 +13,7 @@ class Customers extends Component{
         super (props);
         this.usersDataRef=firebase.database().ref('UsersData');
         this.state={
-          usersDataList:[],
-
+          usersDataList:[]
         }
       }
     
@@ -31,7 +31,7 @@ class Customers extends Component{
               "rejected_ads":data.userAdvertisementDetails ? this.countRejectedAds(data.userAdvertisementDetails.singleAdvertisementDetails) : 0,
               "pending_ads": data.userAdvertisementDetails ? this.countPendingAds(data.userAdvertisementDetails.singleAdvertisementDetails) : 0,
               "invested":data.userWalletDetails.transactionsDetails?this.getTotalInvestment(data.userWalletDetails.transactionsDetails):0,
-              "status":String(data.userPersonalDetails.userAccountStatus)
+              "status":<StatusButton userAccountData={data.userPersonalDetails} userId={data.userId} key={data.userId}/>
             });
         });  
         this.setState({

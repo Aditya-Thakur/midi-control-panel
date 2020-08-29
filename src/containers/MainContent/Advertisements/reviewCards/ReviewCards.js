@@ -9,8 +9,8 @@ class ReviewCards extends Component {
         // console.log(this.props.reviewPendingAdvList);
 
         return<div className="row">
-            {this.props.reviewPendingAdvList.map(item => item.screens.length?
-            <ReviewCard advId={item.advId} advScreens={item.screens} key={item.advId} advData={item.advData} />:<div></div>)}
+            {this.props.reviewPendingAdvList.map((item,index) => item.screens.length?
+            <ReviewCard advId={item.advId} advScreens={item.screens} key={item.advId} userId={item.userId} advIndex={index} advData={item.advData} />:<div></div>)}
             </div>
     }
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Tinycharts from '../../Chartstypes/Tinycharts';
 import AUX from '../../../hoc/Aux_';
 import { Link } from 'react-router-dom';
+import BannerTable from './BannerTable/BannerTable'
 
 import firebase from '.../../../src/firebase';
 
@@ -25,10 +26,16 @@ class AppContent extends Component {
 
     componentDidMount() {
         this.appBannersDataRef.on('value', (snapshot) => {
-            this.setState({
-                appBannersDataList: snapshot.val()
-            });
-        });
+            snapshot.val()!=null?
+                this.setState({
+                    appBannersDataList: snapshot.val()
+                })
+                :
+                this.setState({
+                    appBannersDataList: []
+                });
+            }
+        );
     }
     handleChange = e => {
         if (e.target.files[0]) {
@@ -54,11 +61,12 @@ class AppContent extends Component {
                 // complete function ....
                 firebase.storage().ref('BannerImages').child(image.name).getDownloadURL().then(url => {
                     this.setState({ url });
-                    let localBannerData={}
-                    localBannerData.banner_name=this.banner_name.value
-                    localBannerData.banner_url=url
-                    this.appBannersDataRef.child("banner005")
-                    .set(localBannerData).then(_ => {
+                    const obj = {'banner_name':this.banner_name.value, 'banner_url':url};
+                    this.setState({
+                        appBannersDataList: [...this.state.appBannersDataList, obj]
+                    });
+                    this.appBannersDataRef
+                    .set(this.state.appBannersDataList).then(_ => {
                         alert("Banner Added.")
                       });
                 })
@@ -120,55 +128,13 @@ class AppContent extends Component {
                             <div className="card-body">
                                 <h4 className="mt-0 header-title">Image List</h4>
                                 <p className="text-muted m-b-30 ">You can manage image here.</p>
-                                <table id="datatable" className="table table-vertical mb-1 dt-responsive nowrap">
-                                    <thead>
-                                        <tr>
-                                            <th>Id</th>
-                                            <th>Title</th>
-                                            <th>Image</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Banner 1</td>
-                                            <td><img className="rounded mr-2 mo-mb-2" alt="200x200" width="120" src="assets/images/small/img-4.jpg" data-holder-rendered="true" /></td>
-
-                                            <td><button type="button" className="btn btn-secondary btn-sm waves-effect waves-light">Edit</button>
-                                                <button type="button" className="btn btn-danger btn-sm waves-effect waves-light">Delete</button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Banner 2</td>
-                                            <td><img className="rounded mr-2 mo-mb-2" alt="200x200" width="120" src="assets/images/small/img-4.jpg" data-holder-rendered="true" /></td>
-                                            <td> <a href="#" className="waves-effect"><i className="fas fa-edit"></i><span> Edit </span></a>
-                                                <a href="#" className="waves-effect"><i className="mdi mdi-delete"></i><span> Delete </span></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Banner 3</td>
-                                            <td><img className="rounded mr-2 mo-mb-2" alt="200x200" width="120" src="assets/images/small/img-4.jpg" data-holder-rendered="true" /></td>
-                                            <td> <a href="#" className="waves-effect"><i className="fas fa-edit"></i><span> Edit </span></a>
-                                                <a href="#" className="waves-effect"><i className="mdi mdi-delete"></i><span> Delete </span></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>Banner 4</td>
-                                            <td><img className="rounded mr-2 mo-mb-2" alt="200x200" width="120" src="assets/images/small/img-4.jpg" data-holder-rendered="true" /></td>
-                                            <td> <a href="#" className="waves-effect"><i className="fas fa-edit"></i><span> Edit </span></a>
-                                                <a href="#" className="waves-effect"><i className="mdi mdi-delete"></i><span> Delete </span></a></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <BannerTable bannerList={this.state.appBannersDataList}/>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div>
                 </div>
-
-
             </AUX>
         );
     }
