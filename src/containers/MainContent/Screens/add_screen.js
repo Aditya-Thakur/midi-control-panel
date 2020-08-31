@@ -13,9 +13,11 @@ class add_screen extends Component {
     this.screensDataRef = firebase.database().ref('AvailableLocations');
     this.state = {
       switch: false,
+      ageGroupPref:{}
     };
     this.onSubmit = this.onSubmit.bind(this);
     this.changeswitch = this.changeswitch.bind(this);
+    this.handleAgeGroupChange = this.handleAgeGroupChange.bind(this);
   }
   changeswitch() { this.setState({ switch: !this.state.switch }); }
 
@@ -30,15 +32,24 @@ class add_screen extends Component {
     }
     localScreenData.screenId="SCRN02XBF"
     localScreenData.screenCity = this.screenCity.value;
+    localScreenData.screenLocation = this.screenLocation.value;
     localScreenData.screenImpressions = this.impression.value;
     localScreenData.screenPrice = this.price.value;
     localScreenData.screenGenderRatio = this.gender_ratio.value;
+    localScreenData.screenAgeGroupPref = this.state.ageGroupPref;
+    localScreenData.screenPincode=this.screenPincode.value;
     this.screensDataRef.child(localScreenData.screenCity + "/screenData/" + localScreenData.screenId)
       .set(localScreenData)
       .then(_ => {
         alert("Screen Added.")
       });
+    console.warn(this.state)
   }
+
+  handleAgeGroupChange(event) {
+    const target = event.target;
+    this.state.ageGroupPref[target.name] = target.value;   
+}
   render() {
     return (
       <AUX>
@@ -65,12 +76,12 @@ class add_screen extends Component {
                 <h4 className="mt-0 header-title">Location</h4>
 
                 <p className="text-muted m-b-30 font-14">Mobile App Notifications allow you to keep in touch with your users in a non-intrusive way by providing timely messages and helpful and relevant information like rewards descriptions and special offers. They also provide a great way of getting users to engage in new promotions or features...</p>
-                <SearchLocationInput/>
+                {/* <SearchLocationInput/> */}
                 <div className="row">
                   <div className="col-6">
                     <div className="form-group">
-                      <label className="control-label">Select Location</label>
-                      <select className="form-control select2">
+                      <label className="control-label">Select City</label>
+                      <select className="form-control select2" ref={(c) => this.screenCity = c}>
                         <option>Select</option>
                         <optgroup label="Available Locations">
                           <option value="Delhi">Delhi</option>
@@ -87,15 +98,15 @@ class add_screen extends Component {
                 <div className="row">
                   <div className="col-6">
                     <div className="form-group">
-                      <label className="col-form-label">City</label>
-                      <input className="form-control" defaultValue="" required placeholder="City Name" type="text" name='screenCity' ref={(c) => this.screenCity = c} />
+                      <label className="col-form-label">Location</label>
+                      <input className="form-control" defaultValue="" placeholder="Screen Location" type="text" name='location' ref={(c) => this.screenLocation = c} />
                     </div>
 
                   </div>
                   <div className="col-6">
                     <div className="form-group">
                       <label className="col-form-label">Pin Code</label>
-                      <input className="form-control" defaultValue="" type="text" required placeholder="PinCode" name="pin_code" ref={(c) => this.pin_code = c} />
+                      <input className="form-control" defaultValue="" type="text" placeholder="PinCode" name="screenPincode" ref={(c) => this.screenPincode = c} />
                     </div>
 
                   </div>
@@ -124,8 +135,42 @@ class add_screen extends Component {
                   <div className="col-12">
                     <div className="form-group">
                       <label className="col-form-label">Price</label>
-                      <input className="form-control" type="number" required placeholder="Amount per day" defaultValue="" name="price" ref={(c) => this.price = c} />
+                      <input className="form-control" type="number" placeholder="Amount per day" defaultValue="" name="price" ref={(c) => this.price = c} />
                     </div>
+                  </div>
+
+                </div>
+                <div className="row">
+                  <div className="col-12">
+                            <div class="form-group">
+                              <label>Age Group Pref:</label><br />
+                                <div className="row">
+                                  <div className="col-3">
+                                    <div className="form-group">
+                                      <label className="col-form-label">Generation Z</label>
+                                      <input className="form-control" type="number" name="generationZ" onChange={this.handleAgeGroupChange}  />
+                                    </div>
+                                </div>
+                                <div className="col-3">
+                                    <div className="form-group">
+                                      <label className="col-form-label">Generation Y</label>
+                                      <input className="form-control" type="number" name="generationY" onChange={this.handleAgeGroupChange}  />
+                                    </div>
+                                </div>
+                                <div className="col-3">
+                                    <div className="form-group">
+                                      <label className="col-form-label">Generation X</label>
+                                      <input className="form-control" type="number" name="generationX" onChange={this.handleAgeGroupChange} />
+                                    </div>
+                                </div>
+                                <div className="col-3">
+                                    <div className="form-group">
+                                      <label className="col-form-label">Baby Boomers</label>
+                                      <input className="form-control" type="number" name="babyBoomers" onChange={this.handleAgeGroupChange} />
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
                   </div>
                 </div>
                 <div className="form-group button-items">

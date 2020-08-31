@@ -27,7 +27,7 @@ class login extends Component
                             <div className="p-3">
                                 <h4 className="text-muted font-18 m-b-5 text-center">{!this.props.is_reg ? 'Welcome Back !' : 'Free Register'}</h4>
                                 <p className="text-muted text-center">{!this.props.is_reg ? 'Sign in to continue to Mirai Vizion.' : 'Get your free fonik account now.'}</p>
-                                <form className="form-horizontal m-t-30" action="index">
+                                <form className="form-horizontal m-t-30" action="/">
 
                                     {(this.props.is_reg) ?
                                         <div className="form-group">

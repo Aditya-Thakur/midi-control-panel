@@ -6,6 +6,8 @@ import mainbuilder from './containers/mainbuilder/mainbuilder';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import './App.css';
+import login from './containers/Auth/Login';
+
 
 class App extends Component {
 
@@ -14,7 +16,7 @@ class App extends Component {
       layout = (
         <Layout topbar={this.props.topbar} sidebar = {this.props.sidebar}  footer = {this.props.footer} isloginpage={this.props.loginpage}>
           <Switch>  
-            <Route path="/" component={mainbuilder} />
+          <Route path="/" component={mainbuilder} />
           </Switch>
         </Layout>);
     
