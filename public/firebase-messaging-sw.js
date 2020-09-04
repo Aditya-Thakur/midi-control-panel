@@ -1,8 +1,7 @@
-import firebase from 'firebase';
+importScripts('https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js');
+importScripts('https://www.gstatic.com/firebasejs/7.19.1/firebase-messaging.js');
 
-//initialize fatabase
-
-var firebaseConfig = {
+firebase.initializeApp({
   apiKey: "AIzaSyAgQjbjPBvf8kZxtG-1hiitsyOHKLVyyos",
   authDomain: "midi-trio.firebaseapp.com",
   databaseURL: "https://midi-trio.firebaseio.com",
@@ -11,8 +10,6 @@ var firebaseConfig = {
   messagingSenderId: "260185012851",
   appId: "1:260185012851:web:c9409a57dbe41686728806",
   measurementId: "G-NYJX024NVE"
-};
+  })
 
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  export default firebase;
+const initMessaging = firebase.messaging()

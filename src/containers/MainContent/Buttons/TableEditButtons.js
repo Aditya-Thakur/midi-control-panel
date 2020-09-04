@@ -9,7 +9,7 @@ class TableEditButtons extends Component {
         super(props);
         let checked = true;
         this.screensDataRef = firebase.database().ref('AvailableLocations');
-        if (props.screenData.screenStatus == "1") {
+        if (props.screenData.screenStatus === "1") {
             checked = true
         }
         else {

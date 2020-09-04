@@ -1,12 +1,41 @@
 import React , {Component } from 'react';
-import Tinycharts from '../../Chartstypes/Tinycharts';
 import AUX from '../../../hoc/Aux_';
-import { MDBDataTable } from 'mdbreact';
-import { Link } from 'react-router-dom';
-
-import firebase from '.../../../src/firebase';
+import axios from 'axios';
 
 class Notification extends Component{
+
+
+    constructor(props){
+        super(props);
+        this.state = {
+            notification:{}
+        };
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange = (e) => {
+        const newData = { ...this.state.notification, [e.target.name]:e.target.value} ;
+        this.setState({ notification : newData });
+    };
+    
+
+    onSubmit = (e) => {
+        e.preventDefault();
+        const notify = {
+            topic: "com.tragicbytes.midi",
+            notifyTitle:this.state.notification.notifyTitle,
+            notifyBody:this.state.notification.notifyBody
+          };
+      
+          axios.post(`https://nodejs-fcm-server.herokuapp.com/notify`, notify )
+            .then(res => {
+              console.log(res);
+              console.log(res.data);
+            })
+        console.log(this.state.notification)
+    
+    }
+
  render(){
         return(
             <AUX>
@@ -29,7 +58,7 @@ class Notification extends Component{
                                         <form class="" action="sendMessage()">
                                             <div class="form-group">
                                                 <label>Title</label>
-                                                <input type="text" class="form-control" required placeholder="Type something"/>
+                                                <input type="text" class="form-control" required placeholder="Type something" name="notifyTitle" onChange={this.handleChange}/>
                                             </div>
         
                                           
@@ -37,7 +66,7 @@ class Notification extends Component{
                                             <div class="form-group">
                                                 <label>Message</label>
                                                 <div>
-                                                    <textarea required class="form-control" rows="5"></textarea>
+                                                    <textarea required class="form-control" rows="5" name="notifyBody" onChange={this.handleChange}></textarea>
                                                 </div>
                                             </div>
                                               
@@ -51,7 +80,7 @@ class Notification extends Component{
                                             </div>
                                             <div class="form-group">
                                                 <div>
-                                                    <button type="submit" class="btn btn-primary waves-effect waves-light">
+                                                    <button type="submit" class="btn btn-primary waves-effect waves-light" onClick={this.onSubmit}>
                                                         Submit
                                                     </button>
                                                     <button type="reset" class="btn btn-secondary waves-effect m-l-5">

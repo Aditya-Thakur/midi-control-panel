@@ -43,7 +43,7 @@ class Customers extends Component{
       countPendingAds(singleAdvertisementDetails){
           let sum=0
           singleAdvertisementDetails.forEach(advDetails=>{
-              if(advDetails.advOverallStatus==2){
+              if(advDetails.advOverallStatus===2){
                 sum+=1
               }
           })
