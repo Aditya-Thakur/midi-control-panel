@@ -8,12 +8,23 @@ class ScreenListItem extends Component {
 
     constructor(props) {
         super(props);
+	this.state = {time: '',};
         this.usersDataRef = firebase.database().ref('UsersData');
         this.onApprove = this.onApprove.bind(this);
         this.onReject = this.onReject.bind(this);
     }
 
     componentDidMount() {
+ 	var that = this;
+
+    var date = new Date().getDate(); //Current Date
+    var month = new Date().getMonth() + 1; //Current Month
+    var year = new Date().getFullYear(); //Current Year
+    var hours = new Date().getHours(); //Current Hours
+    var min = new Date().getMinutes(); //Current Minutes
+    var sec = new Date().getSeconds(); //Current Seconds
+
+    that.setState({ date: date + '/' + month + '/' + year + ' ' + hours + ':' + min + ':' + sec, });
         // console.log(this.props.screenDetails.screenPrice)
         // this.usersDataRef.child(this.props.userId+"/userAdvertisementDetails/singleAdvertisementDetails/"+this.props.advIndex+"/screens/"+this.props.screenIndex+"/screenApprovedStatus").on('value', (snapshot) => {
         //     console.log(snapshot.val());
@@ -23,6 +34,10 @@ class ScreenListItem extends Component {
     onApprove(e) {
         e.preventDefault();
         this.usersDataRef = firebase.database().ref('UsersData');
+this.usersDataRef.child(this.props.userId+"/userAdvertisementDetails/singleAdvertisementDetails/"+this.props.advIndex+"/screens/"+this.props.screenIndex+"/screenAdminComment")
+        .set("Your Advertisement is Approved");
+this.usersDataRef.child(this.props.userId+"/userAdvertisementDetails/singleAdvertisementDetails/"+this.props.advIndex+"/screens/"+this.props.screenIndex+"/screenAdvApprovedOn")
+        .set("{this.state.date}");
         this.usersDataRef.child(this.props.userId+"/userAdvertisementDetails/singleAdvertisementDetails/"+this.props.advIndex+"/screens/"+this.props.screenIndex+"/screenApprovedStatus")
         .set("1")
       .then(_ => {
@@ -91,14 +106,11 @@ class ScreenListItem extends Component {
             <li className="list-group-item" key={this.props.screenDetails.screenId}>{this.props.screenDetails.screenId}
                                 <div className="row">
                     <div className="col-md-7">
-                        <footer className="font-12">{this.props.screenDetails.screenLocation}, <cite title="Source Title">{this.props.screenDetails.screenCity}</cite></footer>
+                        <footer className="font-18">{this.props.screenDetails.screenLocation}, <cite title="Source Title">{this.props.screenDetails.screenCity}</cite></footer>
                     </div>
                     {window.location.pathname==="/reviewed_advertisements"?
                         <div className="col-md-5">
-                        {this.props.screenDetails.screenApprovedStatus===1?
-                            <div type="button" disabled className="btn btn-outline-success waves-effect waves-light float-right">Approved</div>
-                            :
-                            <div type="button" className="btn btn-outline-danger waves-effect waves-light float-right mr-1">Rejected</div>
+                        {this.props.screenDetails.screenApprovedStatus===1? <div type="button" disabled className="btn btn-outline-success waves-effect waves-light float-right">Approved</div> : <div type="button" className="btn btn-outline-danger waves-effect waves-light float-right mr-1">Rejected</div>
 
                         }
                         </div>

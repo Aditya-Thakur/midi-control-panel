@@ -38,6 +38,7 @@ class add_screen extends Component {
     localScreenData.screenGenderRatio = this.gender_ratio.value;
     localScreenData.screenAgeGroupPref = this.state.ageGroupPref;
     localScreenData.screenPincode=this.screenPincode.value;
+	localScreenData.screenActiveTime=this.screenActiveTime.value;
     this.screensDataRef.child(localScreenData.screenCity + "/screenData/" + localScreenData.screenId)
       .set(localScreenData)
       .then(_ => {
@@ -132,43 +133,51 @@ class add_screen extends Component {
                             <input className="form-control" type="number" value="42" id="screen-impressions" />
                             </div>
                         </div> */}
-                  <div className="col-12">
+                  <div className="col-6">
                     <div className="form-group">
                       <label className="col-form-label">Price</label>
                       <input className="form-control" type="number" placeholder="Amount per day" defaultValue="" name="price" ref={(c) => this.price = c} />
                     </div>
                   </div>
-
-                </div>
+			<div className="col-6">
+                            <div className="form-group">
+                            <label className="col-form-label">Screen Active Time (Format ex: 9AM - 5PM)</label>
+                      <input className="form-control" placeholder="SAT in Above Format only." type="text" defaultValue="" name="screenActiveTime" ref={(c) => this.screenActiveTime = c} />
+                            </div>
+                        </div>
+                </div><br/>
                 <div className="row">
                   <div className="col-12">
                             <div class="form-group">
                               <label>Age Group Pref:</label><br />
                                 <div className="row">
-                                  <div className="col-3">
+<div className="col-3">
                                     <div className="form-group">
-                                      <label className="col-form-label">Generation Z</label>
-                                      <input className="form-control" type="number" name="generationZ" onChange={this.handleAgeGroupChange}  />
-                                    </div>
-                                </div>
-                                <div className="col-3">
-                                    <div className="form-group">
-                                      <label className="col-form-label">Generation Y</label>
-                                      <input className="form-control" type="number" name="generationY" onChange={this.handleAgeGroupChange}  />
-                                    </div>
-                                </div>
-                                <div className="col-3">
-                                    <div className="form-group">
-                                      <label className="col-form-label">Generation X</label>
-                                      <input className="form-control" type="number" name="generationX" onChange={this.handleAgeGroupChange} />
-                                    </div>
-                                </div>
-                                <div className="col-3">
-                                    <div className="form-group">
-                                      <label className="col-form-label">Baby Boomers</label>
+                                      <label className="col-form-label">Below 18 :{/* (Baby Boomers)*/}</label>
                                       <input className="form-control" type="number" name="babyBoomers" onChange={this.handleAgeGroupChange} />
                                     </div>
                                 </div>
+ <div className="col-3">
+                                    <div className="form-group">
+                                      <label className="col-form-label">Age 18-34:{/* (Generation X)*/}</label>
+                                      <input className="form-control" type="number" name="generationX" onChange={this.handleAgeGroupChange} />
+                                    </div>
+                                </div>
+ <div className="col-3">
+                                    <div className="form-group">
+                                      <label className="col-form-label">Age 35-50:{/* (Generation Y)*/}</label>
+                                      <input className="form-control" type="number" name="generationY" onChange={this.handleAgeGroupChange}  />
+                                    </div>
+                                </div>
+                                  <div className="col-3">
+                                    <div className="form-group">
+                                      <label className="col-form-label">Age 50+:{/* (Generation Z)*/}</label>
+                                      <input className="form-control" type="number" name="generationZ" onChange={this.handleAgeGroupChange}  />
+                                    </div>
+                                </div>
+                               
+                               
+                                
                                 </div>
                             </div>
                   </div>
