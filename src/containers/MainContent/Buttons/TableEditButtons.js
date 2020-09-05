@@ -37,13 +37,37 @@ class TableEditButtons extends Component {
         else {
             localScreenData.screenStatus = "1";
         }
-        localScreenData.screenCity = this.screenCity.value;
-        localScreenData.screenLocation = this.screenLocation.value;
-        localScreenData.screenImpressions = this.impression.value;
-        localScreenData.screenPrice = this.price.value;
-        localScreenData.screenGenderRatio = this.gender_ratio.value;
-        localScreenData.screenPincode=this.screenPincode.value;
-        localScreenData.screenAgeGroupPref = this.state.ageGroupPref;
+        if(this.screenCity.value!=""){
+            localScreenData.screenCity = this.screenCity.value;
+        }
+        
+        if(this.screenLocation.value!=""){
+            localScreenData.screenLocation = this.screenLocation.value;
+        }
+        
+         if(this.impression.value!=""){
+            localScreenData.screenImpressions = this.impression.value;
+        }
+        
+         if(this.price.value!=""){
+           localScreenData.screenPrice = this.price.value;
+        }
+        
+         if(this.gender_ratio.value!=""){
+            localScreenData.screenGenderRatio = this.gender_ratio.value;
+        }
+        
+         if(this.screenPincode.value!=""){
+            localScreenData.screenPincode=this.screenPincode.value;
+        }
+          if(this.screenActiveTime.value!=""){
+            localScreenData.screenActiveTime=this.screenActiveTime.value;
+        }
+          if(this.state.ageGroupPref!=""){
+            localScreenData.screenAgeGroupPref = this.state.ageGroupPref;
+        }
+        
+        
         this.screensDataRef.child(this.props.screenData.screenCity + "/screenData/" + this.props.screenData.screenId)
             .set(localScreenData)
             .then(_ => {
@@ -128,10 +152,11 @@ class TableEditButtons extends Component {
                             </div>
                             <div className="col-6">
                                 <div className="form-group">
-                                    <label className="col-form-label">Gender Ratio</label>
+                                    <label className="col-form-label">Gender Ratio (M/F)*</label>
                                     <input className="form-control" type="number" defaultValue={this.props.screenData.screenGenderRatio} name="gender_ratio" ref={(c) => this.gender_ratio = c} />
                                 </div>
                             </div>
+
                         </div>
                         <div className="row">
                             {/* <div className="col-4">
@@ -140,42 +165,51 @@ class TableEditButtons extends Component {
                             <input className="form-control" type="number" value="42" id="screen-impressions" />
                             </div>
                         </div> */}
-                            <div className="col-12">
+                            <div className="col-6">
                                 <div className="form-group">
                                     <label className="col-form-label">Price</label>
                                     <input className="form-control" type="number" defaultValue={this.props.screenData.screenPrice} name="price" ref={(c) => this.price = c} />
                                 </div>
                             </div>
+                        <div className="col-6">
+                            <div className="form-group">
+                            <label className="col-form-label">Screen Active Time (Format ex: 9AM - 5PM)*</label>
+                      <input className="form-control" placeholder="SAT in Above Format only." type="text" defaultValue={this.props.screenActiveTime} name="screenActiveTime" ref={(c) => this.screenActiveTime = c} />
+                            </div>
+                        </div>
                         </div>
                         <div className="row">
                             <div className="col-12">
                                 <div class="form-group">
                                     <label>Age Group Pref:</label><br />
                                     <div className="row">
-                                        <div className="col-3">
+                                       <div className="col-3">
                                             <div className="form-group">
-                                                <label className="col-form-label">Generation Z</label>
-                                                <input className="form-control" type="number" defaultValue={this.props.screenData.screenAgeGroupPref.generationZ} name="generationZ" onChange={this.handleAgeGroupChange} />
+                                                <label className="col-form-label">Below 18 :*{/* (Baby Boomers)*/}</label>
+                                                <input className="form-control" type="number" defaultValue={this.props.screenData.screenAgeGroupPref.babyBoomers} name="babyBoomers" onChange={this.handleAgeGroupChange} />
                                             </div>
                                         </div>
-                                        <div className="col-3">
+ <div className="col-3">
                                             <div className="form-group">
-                                                <label className="col-form-label">Generation Y</label>
+                                                <label className="col-form-label">Age 18-34:*{/* (Generation X)*/}</label>
+                                                <input className="form-control" type="number" defaultValue={this.props.screenData.screenAgeGroupPref.generationX} name="generationX" onChange={this.handleAgeGroupChange} />
+                                            </div>
+                                        </div>
+<div className="col-3">
+                                            <div className="form-group">
+                                                <label className="col-form-label">Age 35-50:*{/* (Generation Y)*/}</label>
                                                 <input className="form-control" type="number" defaultValue={this.props.screenData.screenAgeGroupPref.generationY} name="generationY" onChange={this.handleAgeGroupChange} />
                                             </div>
                                         </div>
                                         <div className="col-3">
                                             <div className="form-group">
-                                                <label className="col-form-label">Generation X</label>
-                                                <input className="form-control" type="number" defaultValue={this.props.screenData.screenAgeGroupPref.generationX} name="generationX" onChange={this.handleAgeGroupChange} />
+                                                <label className="col-form-label">Age 50+:*{/* (Generation Z)*/}</label>
+                                                <input className="form-control" type="number" defaultValue={this.props.screenData.screenAgeGroupPref.generationZ} name="generationZ" onChange={this.handleAgeGroupChange} />
                                             </div>
                                         </div>
-                                        <div className="col-3">
-                                            <div className="form-group">
-                                                <label className="col-form-label">Baby Boomers</label>
-                                                <input className="form-control" type="number" defaultValue={this.props.screenData.screenAgeGroupPref.babyBoomers} name="babyBoomers" onChange={this.handleAgeGroupChange} />
-                                            </div>
-                                        </div>
+                                        
+                                       
+                                        
                                     </div>
                                 </div>
                             </div>

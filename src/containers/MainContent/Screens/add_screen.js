@@ -191,19 +191,19 @@ alert(e)
                             <div class="form-group">
                               <label>Age Group Pref:*</label><br />
                                 <div className="row">
-<div className="col-3">
+                                        <div className="col-3">
                                     <div className="form-group">
                                       <label className="col-form-label">Below 18 :*{/* (Baby Boomers)*/}</label>
                                       <input className="form-control" type="number" name="babyBoomers" onChange={this.handleAgeGroupChange} />
                                     </div>
                                 </div>
- <div className="col-3">
+                                    <div className="col-3">
                                     <div className="form-group">
                                       <label className="col-form-label">Age 18-34:*{/* (Generation X)*/}</label>
                                       <input className="form-control" type="number" name="generationX" onChange={this.handleAgeGroupChange} />
                                     </div>
                                 </div>
- <div className="col-3">
+                                    <div className="col-3">
                                     <div className="form-group">
                                       <label className="col-form-label">Age 35-50:*{/* (Generation Y)*/}</label>
                                       <input className="form-control" type="number" name="generationY" onChange={this.handleAgeGroupChange}  />
@@ -215,12 +215,9 @@ alert(e)
                                       <input className="form-control" type="number" name="generationZ" onChange={this.handleAgeGroupChange}  />
                                     </div>
                                 </div>
-                               
-                               
-                                
-                                </div>
                             </div>
-                  </div>
+                        </div>
+                    </div>
                 </div>
                 <div className="form-group button-items">
                   <button className="btn btn-primary waves-effect waves-light" type="submit" onClick={this.onSubmit}>Submit</button>
