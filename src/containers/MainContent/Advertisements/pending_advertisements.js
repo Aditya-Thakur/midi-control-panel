@@ -58,7 +58,7 @@ class pending_advertisements extends Component {
                                 <li className="breadcrumb-item"><Link to="javascript:void(0);">Advertisements</Link></li>
                                 <li className="breadcrumb-item active">Pending Advertisements</li>
                             </ol>
-                            <Tinycharts />
+                            {/* <Tinycharts /> */}
                         </div>
                     </div>
                 </div>

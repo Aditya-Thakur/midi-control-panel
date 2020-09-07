@@ -188,7 +188,7 @@ alert(e)
                 </div><br/>
                 <div className="row">
                   <div className="col-12">
-                            <div class="form-group">
+                            <div className="form-group">
                               <label>Age Group Pref:*</label><br />
                                 <div className="row">
                                         <div className="col-3">

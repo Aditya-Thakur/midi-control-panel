@@ -102,7 +102,7 @@ render(){
                                     <li className="breadcrumb-item"><Link to="javascript:void(0);">Tables</Link></li>
                                     <li className="breadcrumb-item active">Screenboards List</li>
                                 </ol>
-                                <Tinycharts />
+                                {/* <Tinycharts /> */}
                             </div>
                         </div>
                     </div>

@@ -83,22 +83,23 @@ class Customers extends Component{
         let data = {
             columns: [
               {
-                label: 'Company',
-                field: 'company',
-                sort: 'asc',
-                width: 150
-              },
-              {
                 label: 'Name',
                 field: 'name',
                 sort: 'asc',
-                width: 270
+                width: 270               
               },
               {
                 label: 'Email',
                 field: 'email',
                 sort: 'asc',
                 width: 100
+                
+              },
+              {
+                label: 'Company',
+                field: 'company',
+                sort: 'asc',
+                width: 150
               },
               {
                 label: 'Active Ads',

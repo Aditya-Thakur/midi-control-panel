@@ -10,7 +10,7 @@ class ImageTemplate extends Component {
 
     constructor(props) {
         super(props);
-        this.appBannersDataRef = firebase.database().ref('AppData/app_banners');
+        this.appBannersDataRef = firebase.database().ref('AppData/imageTemplates');
         this.state = {
             image: null,
             url: '',
@@ -66,7 +66,7 @@ class ImageTemplate extends Component {
                     });
                     this.appBannersDataRef
                     .set(this.state.appBannersDataList).then(_ => {
-                        alert("Banner Added.")
+                        alert("Text Image Background template Added.")
                       });
                 })
             }

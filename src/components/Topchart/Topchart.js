@@ -6,7 +6,7 @@ const topchart = ( props ) => (
                 <div className="topbar-left">
                     <Link to="/" className="logo">
                         <span>
-                            <img src="assets/images/mv_heading.png" alt="" height="34" />
+                            <img src="assets/images/mv_heading.png" alt="" height="30" />
                         </span>
                         <i>
                             <img src="assets/images/mv.png" alt="" height="28" width="28" />
