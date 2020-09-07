@@ -128,6 +128,7 @@ alert(e)
                         <optgroup label="Available Locations">
                           <option value="Delhi">Delhi</option>
                           <option value="Greater Noida">Greater Noida</option>
+                          <option value="Madhya Pradesh">Madhya Pradesh</option>
                         </optgroup>
                       </select></div>
                   </div>
