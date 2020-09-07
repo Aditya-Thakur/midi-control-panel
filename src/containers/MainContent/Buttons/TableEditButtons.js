@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
-import firebase from '.../../../src/firebase';
+import firebase from '../../../firebase/firebase';
 import cloneDeep from 'lodash/cloneDeep';
 
 

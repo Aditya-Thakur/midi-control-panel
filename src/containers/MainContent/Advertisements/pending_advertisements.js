@@ -4,7 +4,7 @@ import AUX from '../../../hoc/Aux_';
 import { Link } from 'react-router-dom';
 import ReviewCards from '../Advertisements/reviewCards/ReviewCards';
 
-import firebase from '.../../../src/firebase';
+import firebase from '../../../firebase/firebase';
 
 class pending_advertisements extends Component {
 

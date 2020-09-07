@@ -14,7 +14,6 @@ const topchart = ( props ) => (
                     </Link>
                 </div>
                 <nav className="navbar-custom">
-
                     <ul className="navbar-right d-flex list-inline float-right mb-0">
                         {/* <li className="dropdown notification-list d-none d-sm-block">
                             <form role="search" className="app-search">
@@ -28,7 +27,7 @@ const topchart = ( props ) => (
                         <li className="dropdown notification-list">
                             <button className=" btn btn-link nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown"   aria-haspopup="false" aria-expanded="false">
                                 <i className="ti-bell noti-icon"></i>
-                                <span className="badge badge-pill badge-danger noti-icon-badge">3</span>
+                    <span className="badge badge-pill badge-danger noti-icon-badge">{props.notificationCount}</span>
                             </button>
                             <div className="dropdown-menu dropdown-menu-right dropdown-menu-lg">
                                 
@@ -80,7 +79,7 @@ const topchart = ( props ) => (
                                     <button className="btn btn-link dropdown-item d-block" ><span className="badge badge-success float-right">11</span><i className="mdi mdi-settings m-r-5"></i> Settings</button>
                                     <button className="btn btn-link dropdown-item" ><i className="mdi mdi-lock-open-outline m-r-5"></i> Lock screen</button>
                                     <div className="dropdown-divider"></div>
-                                    <button className="btn btn-link dropdown-item text-danger" ><i className="mdi mdi-power text-danger"></i> Logout</button>
+                                    <Link to="/login" className="btn btn-link dropdown-item text-danger" ><i className="mdi mdi-power text-danger"></i> Logout</Link>
                                 </div>                                                                    
                             </div>
                         </li>

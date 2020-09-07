@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import Tinycharts from '../../Chartstypes/Tinycharts';
 import AUX from '../../../hoc/Aux_';
-import { MDBDataTable } from 'mdbreact';
 import { Link } from 'react-router-dom';
 import ReviewCards from '../Advertisements/reviewCards/ReviewCards';
-
-import firebase from '.../../../src/firebase';
+import firebase from '../../../firebase/firebase';
 
 class approved_advertisements extends Component {
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import AUX from '../../../../../hoc/Aux_';
 import cloneDeep from 'lodash/cloneDeep';
-import firebase from '.../../../src/firebase';
+import firebase from '../../../../../firebase/firebase';
 
 
 class TableElements extends Component {

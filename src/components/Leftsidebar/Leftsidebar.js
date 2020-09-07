@@ -25,7 +25,7 @@ class leftsidebar extends Component {
                             <ul className="metismenu" id="side-menu">
                                 <li className="menu-title">Main</li>
                                 <li>
-                                    <Link to='/' className={this.state.Tab == 'dashboard' ? 'waves-effect active':'waves-effect'} onClick={this.setActiveTab.bind(this, 'dashboard','','')} >
+                                    <Link to='/dashboard' className={this.state.Tab == 'dashboard' ? 'waves-effect active':'waves-effect'} onClick={this.setActiveTab.bind(this, 'dashboard','','')} >
                                         <i className="mdi mdi-view-dashboard"></i><span className="badge badge-primary badge-pill float-right">2</span> <span> Dashboard </span>
                                     </Link>
                                 </li>

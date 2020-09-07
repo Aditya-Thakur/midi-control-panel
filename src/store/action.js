@@ -6,3 +6,5 @@ export const SWITCHTOREG = 'switch_reg';
 export const SWITCHTOLOGIN = 'switch_login';
 export const RECOVER_PASS = 'recover_pass';
 export const FOOTER = 'footer';
+export const AUTH = 'authentication'
+export const USER_ID = 'user_id'

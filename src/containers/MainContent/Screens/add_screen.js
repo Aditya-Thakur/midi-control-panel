@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import AUX from '../../../hoc/Aux_';
 import Tinycharts from '../../Chartstypes/Tinycharts';
 import { Link } from 'react-router-dom';
-import firebase from '.../../../src/firebase';
+import firebase from '../../../firebase/firebase';
 
 import SearchLocationInput from '../Maps/SearchLocationInput'
 

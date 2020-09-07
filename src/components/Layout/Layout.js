@@ -9,7 +9,7 @@ const layout = ( props ) => {
         <Aux>
         {!props.isloginpage ?
         <div id ="wrapper">
-            {props.topbar ? <Topchart /> : null}
+            {props.topbar ? <Topchart notificationCount={props.notificationCount}/> : null}
             {props.sidebar ? <Leftsidebar /> : null}
         <main>
         <div className="content-page">

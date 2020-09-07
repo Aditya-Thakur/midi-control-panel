@@ -2,10 +2,12 @@ import * as actionTypes from '../action';
 const initialState={
     top_bar:true,
     side_bar:true,
-    loginpage:false,
+    loginpage:true,
     isRegpage:false,
     recover_pass : false,
-    footer : true
+    footer : true,
+    authentication:false,
+    user_id:null
 }
 
 const reducer = (state=initialState,action) =>{
@@ -23,7 +25,7 @@ const reducer = (state=initialState,action) =>{
         case actionTypes.LOGINPAGE:
         return{
             ...state,
-            loginpage:!state.loginpage
+            loginpage:action.value
         };
         case actionTypes.REG_PAGE:
         return{
@@ -50,6 +52,16 @@ const reducer = (state=initialState,action) =>{
         return{
             ...state,
             footer:!state.footer
+        };
+        case actionTypes.AUTH:
+        return{
+            ...state,
+            authentication:action.value
+        };
+        case actionTypes.USER_ID:
+        return{
+            ...state,
+            user_id:action.value
         };
         default :
         return state;

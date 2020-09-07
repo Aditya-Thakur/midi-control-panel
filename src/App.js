@@ -5,18 +5,21 @@ import { Route,Switch } from 'react-router-dom';
 import mainbuilder from './containers/mainbuilder/mainbuilder';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import './App.css';
 import axios from 'axios';
-import firebase from './firebase'
+import firebase from './firebase/firebase'
 import { ToastContainer, toast } from 'react-toastify';
-  import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css';
+import login from './containers/Auth/Login';
+import * as actionTypes from './store/action';
 
 class App extends Component {
 
   constructor(props){
     super (props)
     this.state={
-
+      notificationCount:0,
+      notifications:{},
+      isAuth:false
     }
   }
 
@@ -42,6 +45,9 @@ class App extends Component {
     });
     messaging.onMessage((payload)=>{
       console.log(payload);
+      this.setState({
+        notificationCount:this.state.notificationCount+1
+      });
       toast(payload.notification.title, {
         position: "top-right",
         autoClose: 5000,
@@ -56,15 +62,41 @@ class App extends Component {
 
   }
 
+  componentWillMount(){
+    firebase.auth().onAuthStateChanged((user)=>{
+      if (user) {
+        console.log(user.uid)
+        this.props.UpdateUser(user.uid)
+      } else {
+        // No user is signed in.
+      }
+      console.log("user updated")
+    });
+    if(localStorage.getItem("loggedIn")==="true"){
+      this.setState({
+        isAuth:true
+      })
+    }
+
+  }
+
+  componentWillReceiveProps(newProps){
+    if(newProps.loginpage!==this.props.loginpage){
+      window.location.reload()
+    }
+  }
+
 
 
   render() {
     let layout = null;
       layout = (
-        <Layout topbar={this.props.topbar} sidebar = {this.props.sidebar}  footer = {this.props.footer} isloginpage={this.props.loginpage}>
+        <Layout topbar={this.props.topbar} sidebar = {this.props.sidebar}  footer = {this.props.footer} notificationCount={this.state.notificationCount} isloginpage={!this.state.isAuth}>
           <ToastContainer />
           <Switch>  
-          <Route path="/" component={mainbuilder} />
+          {!this.state.isAuth?
+          <Route path="/" component={login} />:
+          <Route path="/" component={mainbuilder} />}
           </Switch>
         </Layout>);
     
@@ -83,5 +115,10 @@ const mapStatetoProps = state =>{
       footer:state.ui_red.footer
   };
 }
+const mapDispatchtoProps = dispatch => {
+  return {
+      UpdateUser: (uid) => dispatch({ type: actionTypes.USER_ID,value:uid }),
+  };
+}
 
-export default withRouter(connect(mapStatetoProps)(App))  ;
+export default withRouter(connect(mapStatetoProps, mapDispatchtoProps)(App))  ;

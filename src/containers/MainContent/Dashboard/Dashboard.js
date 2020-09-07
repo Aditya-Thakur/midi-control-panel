@@ -6,14 +6,17 @@ import Simpleline from '../../../containers/Chartstypes/Simpleline';
 
 import AreaDashboard from '../../../containers/Chartstypes/AreaDashboard';
 
-import firebase from '.../../../src/firebase';
+import firebase from '../../../firebase/firebase';
+import { connect } from 'react-redux';
 
 //import Doughnut from '../../../containers/Chartstypes/Donut';
 class Dashboard extends Component{
     state={
         height:300,
         width:450,
-        usersData:[]
+        usersData:[],
+        availableLocationsData:{},
+        user_id:null
     }
 
     // constructor(props){
@@ -23,29 +26,45 @@ class Dashboard extends Component{
     //     }
     //   }
     
+    componentWillReceiveProps(newProps){
+        console.log(newProps)
+        this.setState({
+            user_id:newProps.user_id
+        })
+      }
       componentDidMount(){
+        console.log(this.props.user_id)
         const usersDataRef=firebase.database().ref('UsersData');
         usersDataRef.on('value',(snapshot)=>{
           let newState=[];
           snapshot.forEach(userSnapshot => {
             let data = userSnapshot.val();
-            console.log('data: ', data);
-            console.log('data', data.userId);
             newState.push({
               userData:data
             });
-        });  
+        });
         this.setState({
             usersData:newState
           });
         });
+        const availableLocationsDataRef=firebase.database().ref('AvailableLocations');
+        availableLocationsDataRef.on('value',(snapshot)=>{
+          let newAvailableLocationState=[];
+          snapshot.forEach(userSnapshot => {
+            let data = userSnapshot.val();
+            newAvailableLocationState.push({
+                availableLocation:data
+            });
+        });  
+        this.setState({
+            availableLocationsData:newAvailableLocationState
+          });
+        })
       }
     
 
   
     render(){
-
-
         //const {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend} = Recharts;
         return(
                     <div>
@@ -72,8 +91,8 @@ class Dashboard extends Component{
                                             </div>
                                             <div className="text-white">
                                                 <h6 className="text-uppercase mb-3">NO. OF USER</h6>
-                                                <h4 className="mb-4">2,456</h4>
-                                                <span className="badge badge-info"> +11% </span> <span className="ml-2">From previous period</span>
+                                                <h4 className="mb-4">{this.state.usersData.length}</h4>
+                                                {/* <span className="badge badge-info"> +11% </span> <span className="ml-2">From previous period</span> */}
                                             </div>
                                         </div>
                                     </div>
@@ -85,8 +104,8 @@ class Dashboard extends Component{
                                                 <i className="mdi mdi-buffer float-right"></i>
                                             </div>
                                             <div className="text-white">
-                                                <h6 className="text-uppercase mb-3">ACTIVE SCREENS</h6>
-                                                <h4 className="mb-4">$46,782</h4>
+                                                <h6 className="text-uppercase mb-3">ACTIVE LOCATIONS</h6>
+                                                <h4 className="mb-4">{this.state.availableLocationsData.length}</h4>
                                                 <span className="badge badge-danger"> -29% </span> <span className="ml-2">From previous period</span>
                                             </div>
                                         </div>
@@ -602,4 +621,10 @@ class Dashboard extends Component{
     }
 }
 
-export default Dashboard;   
+const mapStatetoProps = state =>{
+    return {
+        user_id:state.ui_red.user_id
+    };
+  }
+
+export default connect(mapStatetoProps)(Dashboard);   

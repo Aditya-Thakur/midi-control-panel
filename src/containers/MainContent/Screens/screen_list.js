@@ -8,7 +8,7 @@ import StatusButton from '../Buttons/StatusButton'
 import TableEditButtons from '../Buttons/TableEditButtons'
 
 
-import firebase from '.../../../src/firebase';
+import firebase from '../../../firebase/firebase';
 
 class screen_list extends Component{
   constructor(props){

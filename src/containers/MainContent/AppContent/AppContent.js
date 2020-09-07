@@ -3,8 +3,7 @@ import Tinycharts from '../../Chartstypes/Tinycharts';
 import AUX from '../../../hoc/Aux_';
 import { Link } from 'react-router-dom';
 import BannerTable from './BannerTable/BannerTable'
-
-import firebase from '.../../../src/firebase';
+import firebase from '../../../firebase/firebase';
 
 
 class AppContent extends Component {

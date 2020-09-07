@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AUX from '../../../hoc/Aux_';
-import firebase from '.../../../src/firebase';
+import firebase from '../../../firebase/firebase';
 
 
 class StatusButton extends Component {

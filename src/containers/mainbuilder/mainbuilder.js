@@ -137,6 +137,7 @@ class mainbuilder extends Component{
                     <Route path="/app_content" component={AppContent}/>
                     
                     <Route path="/" component={Dashboard}/>
+
                 </Switch>
         );
     }

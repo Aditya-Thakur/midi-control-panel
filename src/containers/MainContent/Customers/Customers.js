@@ -5,7 +5,7 @@ import { MDBDataTable } from 'mdbreact';
 import { Link } from 'react-router-dom';
 import StatusButton from '../Buttons/StatusButton'
 
-import firebase from '.../../../src/firebase';
+import firebase from '../../../firebase/firebase';
 
 class Customers extends Component{
 
