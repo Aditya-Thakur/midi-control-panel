@@ -54,7 +54,7 @@ class Notification extends Component{
         
                                         <h4 class="mt-0 header-title">Mirai Vizion Application</h4>
                                         <p class="text-muted m-b-30 ">Mobile App Notifications allow you to keep in touch with your users in a non-intrusive way by providing timely messages and helpful and relevant information like rewards descriptions and special offers. They also provide a great way of getting users to engage in new promotions or features..</p>
-        
+                                        <br/>
                                         <form class="" action="sendMessage()">
                                             <div class="form-group">
                                                 <label>Title</label>
@@ -71,13 +71,14 @@ class Notification extends Component{
                                             </div>
                                               
                                         
-                                            <div class="form-group">
+                                            {/* <div class="form-group">
                                                 <label>URL (Optional)</label>
                                                 <div>
                                                     <input parsley-type="url" type="url" class="form-control"
                                                              placeholder="URL"/>
                                                 </div>
-                                            </div>
+                                            </div> */}
+                                            <br/><br/>
                                             <div class="form-group">
                                                 <div>
                                                     <button type="submit" class="btn btn-primary waves-effect waves-light" onClick={this.onSubmit}>

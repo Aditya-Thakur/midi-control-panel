@@ -77,7 +77,7 @@ class Dashboard extends Component{
                                             Welcome to Mirai Vizion Dashboard
                                         </li>
                                     </ol>
-                                    <Tinycharts />
+                                    {/* <Tinycharts /> */}
                                 </div>
                             </div>
                         </div>
@@ -170,7 +170,7 @@ class Dashboard extends Component{
                             </div>
             
                            
-            
+{/*             
                             <div className="row">
             
                                 <div className="col-xl-3">
@@ -248,10 +248,10 @@ class Dashboard extends Component{
                                     </div>
                                 </div>
             
-                            </div>
+                            </div> */}
                            
             
-                            <div className="row">
+                            {/* <div className="row">
                                 
                                 <div className="col-xl-4 col-lg-6">
                                     <div className="card m-b-20">
@@ -376,8 +376,8 @@ class Dashboard extends Component{
                                     </div>
             
                                 </div>
-                            </div>
-                           
+                            </div> */}
+{/*                            
                             <div className="row">
                                 <div className="col-xl-6">
                                     <div className="card m-b-20">
@@ -612,7 +612,7 @@ class Dashboard extends Component{
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                         </div> 
 
                 

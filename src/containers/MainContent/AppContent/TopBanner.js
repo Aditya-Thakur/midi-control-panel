@@ -6,7 +6,7 @@ import BannerTable from './BannerTable/BannerTable'
 import firebase from '../../../firebase/firebase';
 
 
-class AppContent extends Component {
+class TopBanner extends Component {
 
     constructor(props) {
         super(props);
@@ -138,4 +138,4 @@ class AppContent extends Component {
         );
     }
 }
-export default AppContent;
+export default TopBanner;

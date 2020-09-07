@@ -59,17 +59,22 @@ class leftsidebar extends Component {
                                         <i className="mdi mdi-bullhorn"></i><span> Notification </span>
                                     </Link>
                                 </li>
+                                
                                 <li>
-                                    <Link to='/app_content' className={this.state.Tab == 'app_content' ? 'waves-effect active':'waves-effect'} onClick={this.setActiveTab.bind(this, 'app_content','','')} >
-                                        <i className="mdi mdi-cellphone-android"></i><span> App Content </span>
+                                    <Link to='javascript:void(0);' className={this.state.Tab == 'app_content' ? 'active':''} ><i className="mdi mdi-cellphone-android"></i><span> App Content<span className="float-right menu-arrow"><i className="mdi mdi-chevron-right"></i></span> </span>
                                     </Link>
+                                    <ul className="submenu">
+                                        <li className={this.state.SubTab == 'topbanner' ? 'active':''} onClick={this.setActiveTab.bind(this, 'topbanner','','')}><Link to="/TopBanner">Top Banner</Link></li>
+                                        <li className={this.state.SubTab == 'imagetemplate' ? 'active':''} onClick={this.setActiveTab.bind(this, 'imagetemplate','','')}><Link to="/ImageTemplate">Image Template</Link></li>
+                                       
+                                    </ul>
                                 </li>
 
                                 
-                                <li>
+                              {/*  <li>
                                     <Link to='/calendar' className={this.state.Tab == 'calendar' ? 'waves-effect active':'waves-effect'} onClick={this.setActiveTab.bind(this, 'calendar','','')} >
                                         <i className="mdi mdi-calendar-check"></i><span> Calendar </span></Link>
-                                </li>
+                                </li> 
 
                                 <li>
                                     <Link to="javascript:void(0);" className={this.state.Tab == 'email' ? 'waves-effect active':'waves-effect'} ><i className="mdi mdi-email-outline"></i><span> Email <span className="float-right menu-arrow"><i className="mdi mdi-chevron-right"></i></span> </span></Link>
@@ -78,9 +83,9 @@ class leftsidebar extends Component {
                                         <li className={this.state.SubTab == 'read' ? 'active':''} onClick={this.setActiveTab.bind(this, 'email','read','')}><Link to="email-read">Email Read</Link></li>
                                         <li className={this.state.SubTab == 'compose' ? 'active':''} onClick={this.setActiveTab.bind(this, 'email','compose','')}><Link to="email-compose">Email Compose</Link></li>
                                     </ul>
-                                </li>
+                                </li> */}
 
-                                <li className="menu-title">Components</li>
+                           {/*     <li className="menu-title">Components</li>
 
                                 <li>
                                     <Link to="javascript:void(0);"  className={this.state.Tab == 'components' ? 'active':''} ><i className="mdi mdi-buffer"></i> <span> UI Elements <span className="float-right menu-arrow"><i className="mdi mdi-chevron-right"></i></span> </span> </Link>
@@ -118,7 +123,7 @@ class leftsidebar extends Component {
                                     </ul>
                                 </li>
 
-                                <li>
+                                 <li>
                                     <Link to="javascript:void(0);" className={this.state.Tab == 'chart' ? 'active':''}  ><i className="mdi mdi-chart-line"></i><span> Charts <span className="float-right menu-arrow"><i className="mdi mdi-chevron-right"></i></span> </span></Link>
                                     <ul className="submenu">
                                         <li className={this.state.SubTab == 'easy' ? 'active':''} onClick={this.setActiveTab.bind(this, 'chart','easy','')}><Link to="/easy-chart">Easy Chart</Link></li>
@@ -168,11 +173,11 @@ class leftsidebar extends Component {
                                         <li><Link to="/recover-pass">Recover Password</Link></li>
                                         <li><Link to="/lockscreen">Lock Screen</Link></li>
                                     </ul>
-                                </li>
+                                </li>*/}
 
-                                <li>
+                            {/*  <li>
                                     <Link to="javascript:void(0);" className={this.state.Tab == 'pages' ? 'active':''}><i className="mdi mdi-google-pages"></i><span> Extra Pages <span className="float-right menu-arrow"><i className="mdi mdi-chevron-right"></i></span> </span></Link>
-                                    <ul className="submenu">
+                                      <ul className="submenu">
                                         <li className={this.state.SubTab == 'timeline' ? 'active':''} onClick={this.setActiveTab.bind(this, 'pages','timeline','')}><Link to="/timeline">Timeline</Link></li>
                                         <li className={this.state.SubTab == 'invoice' ? 'active':''} onClick={this.setActiveTab.bind(this, 'pages','invoice','')}><Link to="/invoice">Invoice</Link></li>
                                         <li className={this.state.SubTab == 'directory' ? 'active':''} onClick={this.setActiveTab.bind(this, 'pages','directory','')}><Link to="/directory">Directory</Link></li>
@@ -180,7 +185,7 @@ class leftsidebar extends Component {
                                         <li className={this.state.SubTab == 'error_404' ? 'active':''} onClick={this.setActiveTab.bind(this, 'pages','error_404','')}><Link to="/error_404">Error 404</Link></li>
                                         <li className={this.state.SubTab == 'error_500' ? 'active':''} onClick={this.setActiveTab.bind(this, 'pages','error_500','')}><Link to="/error_500">Error 500</Link></li>
                                     </ul>
-                                </li>
+                                </li>*/}
                             </ul>
                         </div>
                         <div className="clearfix"></div>

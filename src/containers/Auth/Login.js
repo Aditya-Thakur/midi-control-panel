@@ -75,13 +75,13 @@ class login extends Component
                     <ToastContainer />
                     <div className="wrapper-page">
                         <div className="card">
-                            <div className="card-body">
+                            <div className="card-body"><br/>
                                 <h3 className="text-center m-0">
-                                    <Link to="/" onClick={()=> this.props.UpdateLoginAgain() } className="logo logo-admin"><img src="assets/images/midi.jpg" height="30" alt="logo" /></Link>
+                                    <Link to="/" onClick={()=> this.props.UpdateLoginAgain() } className="logo logo-admin"><img src="assets/images/miraisplash.png" height="150" alt="Mirai logo" /></Link>
                                 </h3>
                                 <div className="p-3">
-                                    <h4 className="text-muted font-18 m-b-5 text-center">{!this.props.is_reg ? 'Welcome Back !' : 'Free Register'}</h4>
-                                    <p className="text-muted text-center">{!this.props.is_reg ? 'Sign in to continue to Mirai Vizion.' : 'Get your free fonik account now.'}</p>
+                                    <h4 className="text-muted font-18 m-b-5 text-center">{!this.props.is_reg ? 'Welcome Back !' : ''}</h4>
+                                    <p className="text-muted text-center">{!this.props.is_reg ? 'Sign in to continue to Mirai Vizion Dashboard.' : ''}</p>
                                     <form className="form-horizontal m-t-30">
     
                                             <div className="form-group">
@@ -125,7 +125,7 @@ class login extends Component
                         </div>
                         <div className="m-t-40 text-center">
                            
-                            <p>© {new Date().getFullYear()} MiraiVizion. Crafted with <i className="mdi mdi-heart text-danger"></i> by <a href="https://www.nightowldevelopers.com/">NightOwl Developers</a></p>
+                            <p>© {new Date().getFullYear() } MiraiVizion. Crafted with <i className="mdi mdi-heart text-danger"></i> by <a href="https://www.nightowldevelopers.com/">NightOwl Developers</a></p>
                         </div>
                     </div>
                 </AUX>
