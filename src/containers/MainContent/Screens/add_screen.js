@@ -28,6 +28,7 @@ class add_screen extends Component {
   onSubmit(e) {
     e.preventDefault();
     let localScreenData = {}
+    let r = "Scr_"+ Math.random().toString(36).substring(7);
 
     if (this.state.switch == false) {
       localScreenData.screenStatus = "0";
@@ -35,7 +36,7 @@ class add_screen extends Component {
     else {
       localScreenData.screenStatus = "1";
     }
-    localScreenData.screenId="SCRN02XBF"
+    localScreenData.screenId=r
       
 	if(this.screenCity.value=="Select"){
 	   this.dialogAlert("City Required")
