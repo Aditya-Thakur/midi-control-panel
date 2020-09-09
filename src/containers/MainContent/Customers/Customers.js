@@ -27,7 +27,7 @@ class Customers extends Component{
               "company":data.userPersonalDetails.company,
               "name":data.userPersonalDetails.firstName+" "+data.userPersonalDetails.lastName,
               "email":data.userPersonalDetails.email,
-              "active_ads":data.userAdvertisementDetails ? this.countPendingAds(data.userAdvertisementDetails.singleAdvertisementDetails) : 0,
+              "active_ads":data.userAdvertisementDetails ? this.countApprovedAds(data.userAdvertisementDetails.singleAdvertisementDetails) : 0,
               "rejected_ads":data.userAdvertisementDetails ? this.countRejectedAds(data.userAdvertisementDetails.singleAdvertisementDetails) : 0,
               "pending_ads": data.userAdvertisementDetails ? this.countPendingAds(data.userAdvertisementDetails.singleAdvertisementDetails) : 0,
               "invested":data.userWalletDetails.transactionsDetails?this.getTotalInvestment(data.userWalletDetails.transactionsDetails):0,
@@ -43,25 +43,34 @@ class Customers extends Component{
       countPendingAds(singleAdvertisementDetails){
           let sum=0
           singleAdvertisementDetails.forEach(advDetails=>{
-              if(advDetails.advOverallStatus===2){
+            advDetails.screens.forEach(screenDetails=>{
+              if(screenDetails.screenApprovedStatus===""){
                 sum+=1
               }
+            })
+              
           })
           return sum;
       };
       countRejectedAds(singleAdvertisementDetails){
         let sum=0
         singleAdvertisementDetails.forEach(advDetails=>{
-          sum+=Number(advDetails.rejectionCount)
+          advDetails.screens.forEach(screenDetails=>{
+            if(screenDetails.screenApprovedStatus!="" && screenDetails.screenApprovedStatus!="1" ){
+              sum+=1
+            }
+          })
         })
         return sum;
     };
     countApprovedAds(singleAdvertisementDetails){
         let sum=0
         singleAdvertisementDetails.forEach(advDetails=>{
-              if(advDetails.advOverallStatus==1){
-                sum+=1
-              }
+          advDetails.screens.forEach(screenDetails=>{
+            if(screenDetails.screenApprovedStatus==="1"){
+              sum+=1
+            }
+          })
           })
           return sum;
     };
