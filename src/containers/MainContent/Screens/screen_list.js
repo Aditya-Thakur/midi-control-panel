@@ -64,10 +64,11 @@ render(){
             width: 270
           },
           {
-            label: 'Screen Status',
-            field: 'screen_status',
-            sort: 'asc',
-            width: 100
+          label: 'Screen Price [Rupees]',
+          field: 'screenPrice',
+          sort: 'asc',
+          width: 150
+            
           },
           {
             label: 'Screen Number',
@@ -76,10 +77,11 @@ render(){
             width: 100
           },
           {
-            label: 'Screen Price',
-            field: 'screenPrice',
+            label: 'Screen Status',
+            field: 'screen_status',
             sort: 'asc',
-            width: 150
+            width: 100
+            
           },
           {
             label: 'Action',

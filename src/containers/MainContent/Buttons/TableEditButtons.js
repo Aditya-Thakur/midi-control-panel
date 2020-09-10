@@ -67,6 +67,10 @@ class TableEditButtons extends Component {
             localScreenData.screenAgeGroupPref = this.state.ageGroupPref;
         }
         
+       
+        
+        
+        
         
         this.screensDataRef.child(this.props.screenData.screenCity + "/screenData/" + this.props.screenData.screenId)
             .set(localScreenData)
@@ -174,7 +178,7 @@ class TableEditButtons extends Component {
                         <div className="col-6">
                             <div className="form-group">
                             <label className="col-form-label">Screen Active Time (Format ex: 9AM - 5PM)*</label>
-                      <input className="form-control" placeholder="SAT in Above Format only." type="text" defaultValue={this.props.screenActiveTime} name="screenActiveTime" ref={(c) => this.screenActiveTime = c} />
+                      <input className="form-control" placeholder="SAT in Above Format only." type="text" defaultValue={this.props.screenData.screenActiveTime} name="screenActiveTime" ref={(c) => this.screenActiveTime = c} />
                             </div>
                         </div>
                         </div>
