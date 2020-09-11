@@ -3,6 +3,7 @@ import Tinycharts from '../../Chartstypes/Tinycharts';
 import AUX from '../../../hoc/Aux_';
 import { MDBDataTable } from 'mdbreact';
 import { Link } from 'react-router-dom';
+import cloneDeep from 'lodash/cloneDeep';
 
 import StatusButton from '../Buttons/StatusButton'
 import TableEditButtons from '../Buttons/TableEditButtons'
@@ -30,7 +31,7 @@ class screen_list extends Component{
       snapshot.forEach(userSnapshot => {
         let data = userSnapshot.val();
         Object.values(data.screenData).forEach(screen=>{
-          const localScreen=screen
+          const localScreen=(screen)
           localScreen.screen_status=<StatusButton screenData={screen}/>
           localScreen.action=<TableEditButtons screenData={screen}/>
           rows.push(

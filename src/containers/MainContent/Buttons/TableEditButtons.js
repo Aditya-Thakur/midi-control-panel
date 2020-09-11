@@ -18,7 +18,12 @@ class TableEditButtons extends Component {
         this.state = {
             switch: checked,
             modal: false,
-            ageGroupPref: {}
+            ageGroupPref: {
+                generationX:this.props.screenData.screenAgeGroupPref.generationX?this.props.screenData.screenAgeGroupPref.generationX:0,
+                generationY:this.props.screenData.screenAgeGroupPref.generationY?this.props.screenData.screenAgeGroupPref.generationY:0,
+                generationZ:this.props.screenData.screenAgeGroupPref.generationZ?this.props.screenData.screenAgeGroupPref.generationZ:0,
+                babyBoomers:this.props.screenData.screenAgeGroupPref.babyBoomers?this.props.screenData.screenAgeGroupPref.babyBoomers:0
+            }
         };
         this.onSubmit = this.onSubmit.bind(this);
         this.changeswitch = this.changeswitch.bind(this);
@@ -28,10 +33,10 @@ class TableEditButtons extends Component {
 
     onSubmit(e) {
         e.preventDefault();
-        let localScreenData = cloneDeep(this.props.screenData);
+        let localScreenData = (this.props.screenData);
         localScreenData.action = null;
         localScreenData.screen_status = null;
-        if (!this.state.switch == false) {
+        if (this.state.switch == false) {
             localScreenData.screenStatus = "0";
         }
         else {
@@ -66,11 +71,6 @@ class TableEditButtons extends Component {
           if(this.state.ageGroupPref!=""){
             localScreenData.screenAgeGroupPref = this.state.ageGroupPref;
         }
-        
-       
-        
-        
-        
         
         this.screensDataRef.child(this.props.screenData.screenCity + "/screenData/" + this.props.screenData.screenId)
             .set(localScreenData)
@@ -190,25 +190,25 @@ class TableEditButtons extends Component {
                                        <div className="col-3">
                                             <div className="form-group">
                                                 <label className="col-form-label">Below 18 :*{/* (Baby Boomers)*/}</label>
-                                                <input className="form-control" type="number" defaultValue={this.props.screenData.screenAgeGroupPref.babyBoomers} name="babyBoomers" onChange={this.handleAgeGroupChange} />
+                                                <input className="form-control" type="number" defaultValue={this.state.ageGroupPref.babyBoomers} name="babyBoomers" onChange={this.handleAgeGroupChange} />
                                             </div>
                                         </div>
  <div className="col-3">
                                             <div className="form-group">
                                                 <label className="col-form-label">Age 18-34:*{/* (Generation X)*/}</label>
-                                                <input className="form-control" type="number" defaultValue={this.props.screenData.screenAgeGroupPref.generationX} name="generationX" onChange={this.handleAgeGroupChange} />
+                                                <input className="form-control" type="number" defaultValue={this.state.ageGroupPref.generationX} name="generationX" onChange={this.handleAgeGroupChange} />
                                             </div>
                                         </div>
 <div className="col-3">
                                             <div className="form-group">
                                                 <label className="col-form-label">Age 35-50:*{/* (Generation Y)*/}</label>
-                                                <input className="form-control" type="number" defaultValue={this.props.screenData.screenAgeGroupPref.generationY} name="generationY" onChange={this.handleAgeGroupChange} />
+                                                <input className="form-control" type="number" defaultValue={this.state.ageGroupPref.generationY} name="generationY" onChange={this.handleAgeGroupChange} />
                                             </div>
                                         </div>
                                         <div className="col-3">
                                             <div className="form-group">
                                                 <label className="col-form-label">Age 50+:*{/* (Generation Z)*/}</label>
-                                                <input className="form-control" type="number" defaultValue={this.props.screenData.screenAgeGroupPref.generationZ} name="generationZ" onChange={this.handleAgeGroupChange} />
+                                                <input className="form-control" type="number" defaultValue={this.state.ageGroupPref.generationZ} name="generationZ" onChange={this.handleAgeGroupChange} />
                                             </div>
                                         </div>
                                         
