@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Tinycharts from '../../Chartstypes/Tinycharts';
 import AUX from '../../../hoc/Aux_';
 import { Link } from 'react-router-dom';
 import BannerTable from './BannerTable/BannerTable'

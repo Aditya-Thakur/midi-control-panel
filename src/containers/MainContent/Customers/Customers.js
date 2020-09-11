@@ -77,7 +77,7 @@ class Customers extends Component{
     getTotalInvestment(transactionsDetails){
         let sum=0
         transactionsDetails.forEach(transaction=>{
-            if(transaction.transactionStatus==2){
+            if(transaction.transactionStatus==="2"){
                 sum+=-(Number(transaction.transactionAmount))
             }
         });
