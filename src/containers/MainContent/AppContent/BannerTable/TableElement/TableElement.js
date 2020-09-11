@@ -8,7 +8,12 @@ class TableElements extends Component {
 
     constructor(props) {
         super(props);
-        this.appBannersDataRef = firebase.database().ref('AppData/app_banners');
+        if(window.location.pathname === "/image_banner_template"){
+            this.appBannersDataRef = firebase.database().ref('AppData/imageTemplates');
+        }
+        else{
+            this.appBannersDataRef = firebase.database().ref('AppData/app_banners');
+        }
         this.onDelete = this.onDelete.bind(this);
 
     }
