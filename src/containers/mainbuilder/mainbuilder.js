@@ -3,12 +3,13 @@ import Calendar from '../MainContent/Calendar/Calendar';
 import Dashboard from '../MainContent/Dashboard/Dashboard';
 import Customers from '../MainContent/Customers/Customers';
 import Notification from '../MainContent/Notification/Notification';
-import AppContent from '../MainContent/AppContent/AppContent';
 import { Route,Switch } from 'react-router-dom';
 import add_screen from '../MainContent/Screens/add_screen';
 import screen_list from '../MainContent/Screens/screen_list';
 import pending_advertisements from '../MainContent/Advertisements/pending_advertisements';
 import approved_advertisements from '../MainContent/Advertisements/approved_advertisements';
+import app_top_banner from '../MainContent/AppContent/app_top_banner';
+import image_banner_template from '../MainContent/AppContent/image_banner_template';
 import email_inbox from '../MainContent/Email/email_inbox';
 import email_compose from '../MainContent/Email/email_compose';
 import email_read from '../MainContent/Email/email_read';
@@ -134,7 +135,8 @@ class mainbuilder extends Component{
                     <Route path="/pending_review_advertisements" component={pending_advertisements}/>
                     <Route path="/reviewed_advertisements" component={approved_advertisements}/>
                     <Route path="/notification" component={Notification}/>
-                    <Route path="/app_content" component={AppContent}/>
+                    <Route path="/image_banner_template" component={image_banner_template}/>
+                    <Route path="/app_top_banner" component={app_top_banner}/>
                     
                     <Route path="/" component={Dashboard}/>
 

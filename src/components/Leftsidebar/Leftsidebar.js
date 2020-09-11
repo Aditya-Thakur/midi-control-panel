@@ -64,8 +64,10 @@ class leftsidebar extends Component {
                                     <Link to='javascript:void(0);' className={this.state.Tab == 'app_content' ? 'active':''} ><i className="mdi mdi-cellphone-android"></i><span> App Content<span className="float-right menu-arrow"><i className="mdi mdi-chevron-right"></i></span> </span>
                                     </Link>
                                     <ul className="submenu">
-                                        <li className={this.state.SubTab == 'topbanner' ? 'active':''} onClick={this.setActiveTab.bind(this, 'topbanner','','')}><Link to="/TopBanner">Top Banner</Link></li>
-                                        <li className={this.state.SubTab == 'imagetemplate' ? 'active':''} onClick={this.setActiveTab.bind(this, 'imagetemplate','','')}><Link to="/ImageTemplate">Image Template</Link></li>
+                                        <li className={this.state.SubTab == 'app_top_banner' ? 'active':''} onClick={this.setActiveTab.bind(this, 'app_content','app_top_banner','')}>
+                                            <Link to="app_top_banner">App Top Banner</Link></li>
+                                        <li className={this.state.SubTab == 'image_banner_template' ? 'active':''} onClick={this.setActiveTab.bind(this, 'app_content','image_banner_template','')}>
+                                            <Link to="image_banner_template">Image Banner Template</Link></li>
                                        
                                     </ul>
                                 </li>
