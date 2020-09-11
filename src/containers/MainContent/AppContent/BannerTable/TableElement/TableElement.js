@@ -32,7 +32,7 @@ class TableElements extends Component {
         console.log(this.props.bannerIndex);
         return <AUX>
             <tr>
-                <td>{(this.props.bannerIndex)}</td>
+                <td>{parseInt(this.props.bannerIndex)+1}</td>
                 <td>{this.props.bannerData.banner_name}</td>
                 <td>
                     <img className="rounded mr-2 mo-mb-2" alt="200x200" width="120" src="assets/images/small/img-4.jpg" style={ this.state.loaded ? {display: "none"} : {}}/>
