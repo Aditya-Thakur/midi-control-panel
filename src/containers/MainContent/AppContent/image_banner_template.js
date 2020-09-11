@@ -59,7 +59,19 @@ class ImageTemplate extends Component {
                 // complete function ....
                 firebase.storage().ref('BannerImages').child(image.name).getDownloadURL().then(url => {
                     this.setState({ url });
-                    const obj = {'banner_name':this.banner_name.value, 'banner_url':url};
+                    const obj = {'banner_name':this.banner_name.value, 'banner_url':url,
+                    "average_rating" : "5.00",
+                    "brand" : "NightOwl",
+                    "description" : "AAAAAAAAAAAAAAAAAAAAAA",
+                    "full" : url,
+                    "manage_stock" : true,
+                    "name" : this.banner_name.value,
+                    "price" : "2000",
+                    "pro_id" : 11,
+                    "regular_price" : "1500",
+                    "sale_price" : "500",
+                    "short_description" : "xxxxxxxx"    
+                };
                     this.setState({
                         appBannersDataList: [...this.state.appBannersDataList, obj]
                     });
