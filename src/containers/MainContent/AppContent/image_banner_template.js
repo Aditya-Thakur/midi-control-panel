@@ -95,7 +95,7 @@ class ImageTemplate extends Component {
                         <div className="card m-b-20 ">
                             <div className="card-body">
 
-                                <h4 className="mt-0 header-title">ADD NEW BANNER</h4>
+                                <h4 className="mt-0 header-title">Add new Image Template</h4>
                                 <p className="text-muted m-b-30 ">You can manage Image here.</p>
 
                                     <div className="form-group">

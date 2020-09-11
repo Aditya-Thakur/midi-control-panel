@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Tinycharts from '../../Chartstypes/Tinycharts';
 import AUX from '../../../hoc/Aux_';
 import { Link } from 'react-router-dom';
 import BannerTable from './BannerTable/BannerTable'
@@ -95,7 +94,7 @@ class TopBanner extends Component {
                         <div className="card m-b-20 ">
                             <div className="card-body">
 
-                                <h4 className="mt-0 header-title">ADD NEW BANNER</h4>
+                                <h4 className="mt-0 header-title">Addd New Banner Fop Application</h4>
                                 <p className="text-muted m-b-30 ">You can manage Image here.</p>
 
                                     <div className="form-group">
@@ -125,7 +124,7 @@ class TopBanner extends Component {
                     <div className="col-lg-7">
                         <div className="card m-b-20">
                             <div className="card-body">
-                                <h4 className="mt-0 header-title">Image List</h4>
+                                <h4 className="mt-0 header-title">Top Banner Images List</h4>
                                 <p className="text-muted m-b-30 ">You can manage image here.</p>
                                 <BannerTable bannerList={this.state.appBannersDataList}/>
                             </div>
