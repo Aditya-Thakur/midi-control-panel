@@ -34,7 +34,7 @@ class App extends Component {
         token:token,
         topic:"admin"
       }
-      axios.post(`https://nodejs-fcm-server.herokuapp.com/notify/subscribe`, subscribeToken)
+      axios.post(`https://nodejs-fcm-server.herokuapp.com/notify/unsubscribe`, subscribeToken)
         .then(res => {
           console.log(res);
         }).catch((e)=>{
