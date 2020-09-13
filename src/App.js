@@ -63,12 +63,12 @@ class App extends Component {
   }
 
   componentWillMount(){
+    this.logout()
     firebase.auth().onAuthStateChanged((user)=>{
       if (user) {
         console.log(user.uid)
         this.props.UpdateUser(user.uid)
       } else {
-        // No user is signed in.
       }
       console.log("user updated")
     });
@@ -82,8 +82,24 @@ class App extends Component {
 
   componentWillReceiveProps(newProps){
     if(newProps.loginpage!==this.props.loginpage){
-      window.location.reload()
+      if(newProps.loginpage==true){
+        console.log("prop chnage",newProps.loginpage)
+        this.logout()
+      }
+      else{
+        window.location.reload()
+      }
     }
+  }
+
+  logout(){
+    firebase.auth().signOut().then(function() {
+      // Sign-out successful.
+      console.log("logout")
+      this.props.history.push('/login');
+    }).catch(function(error) {
+      // An error happened.
+    });
   }
 
 
@@ -118,6 +134,8 @@ const mapStatetoProps = state =>{
 const mapDispatchtoProps = dispatch => {
   return {
       UpdateUser: (uid) => dispatch({ type: actionTypes.USER_ID,value:uid }),
+      UpdateLoginToFalse: () => dispatch({ type: actionTypes.LOGINPAGE,value:false }),
+      UpdateLoginToTrue: () => dispatch({ type: actionTypes.LOGINPAGE,value:true }),
   };
 }
 

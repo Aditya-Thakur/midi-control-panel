@@ -22,6 +22,7 @@ class login extends Component
     componentDidMount() {
         if(localStorage.getItem("loggedIn")==="true"){
             localStorage.setItem("loggedIn",false);
+            localStorage.setItem("token",null);
             this.props.UpdateLoginToTrue()
             this.props.history.push('/');
             window.location.reload()
@@ -42,19 +43,51 @@ class login extends Component
         e.preventDefault();
         firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
         .then((user) => {
-            // this.props.history.push('/');
-            toast.success("Login Successfull.!", {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                });
-            localStorage.setItem("user_id",user.uid);
-            localStorage.setItem("loggedIn",true);
-            this.props.UpdateLoginToFalse()
+            const adminRef = firebase.database().ref('admin');
+            adminRef.on('value', (snapshot) => {
+                if(snapshot.val()===user.user.uid){
+                    const messaging=firebase.messaging()
+                    messaging.requestPermission().then(()=>{
+                    return messaging.getToken()
+                    }).then(token=>{
+                        localStorage.setItem("user_id",user.uid);
+                        localStorage.setItem("loggedIn",true);
+                        localStorage.setItem("token",token);
+                        toast.success("Login Successfull.!", {
+                            position: "top-right",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            });
+                        this.props.UpdateLoginToFalse()
+                        }).catch((e)=>{
+                            toast.error(e.message, {
+                                position: "top-right",
+                                autoClose: 5000,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                                });
+                        console.log(e)
+                        });
+            }
+            else{
+                toast.error("Sorry! You don't have ADMIN access.", {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    });
+            }
+            })
           }).catch(function(error) {
             toast.error(error.message, {
                 position: "top-right",

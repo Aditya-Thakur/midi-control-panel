@@ -9,6 +9,7 @@ import { createStore ,combineReducers } from 'redux';
 import  UIreducer from './store/reducers/reducer';
 import  Tinyreducer from './store/reducers/TinychartReducer';
 import { Provider } from 'react-redux';
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
 const rootReducer = combineReducers({
     ui_red:UIreducer,

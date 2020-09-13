@@ -8,7 +8,7 @@ import AreaDashboard from '../../../containers/Chartstypes/AreaDashboard';
 
 import firebase from '../../../firebase/firebase';
 import { connect } from 'react-redux';
-
+import Loader from 'react-loader-spinner'
 //import Doughnut from '../../../containers/Chartstypes/Donut';
 class Dashboard extends Component {
     state = {
@@ -21,7 +21,8 @@ class Dashboard extends Component {
         revenue:0,
         rejectedAdv:0,
         submittedAdv:0,
-        pendingAdv:0
+        pendingAdv:0,
+        visible:true
 
     }
 
@@ -123,7 +124,16 @@ class Dashboard extends Component {
     render() {
         //const {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend} = Recharts;
         return (
+            
             <div>
+                <Loader
+         type="Puff"
+         color="#00BFFF"
+         height={100}
+         width={100}
+         timeout={3000} //3 secs
+ 
+      />
                 <div className="row">
                     <div className="col-sm-12">
                         <div className="page-title-box">
