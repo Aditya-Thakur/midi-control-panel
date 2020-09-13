@@ -20,15 +20,20 @@ class login extends Component
         }
     }
     componentDidMount() {
-        if(localStorage.getItem("loggedIn")==="true"){
-            localStorage.setItem("loggedIn",false);
-            localStorage.setItem("token",null);
-            this.props.UpdateLoginToTrue()
+        firebase.auth().signOut().then(_=> {
+            // Sign-out successful.
+            if(localStorage.getItem("loggedIn")==="true"){
+                localStorage.setItem("loggedIn",false);
+                localStorage.setItem("token",null);
+                this.props.UpdateLoginToTrue()
+                this.props.history.push('/');
+                window.location.reload()
+                console.log("made login to",this.props.loginpage)
+            }
+          }).catch(function(error) {
+            alert("Failed to logout. Retry");
             this.props.history.push('/');
-            window.location.reload()
-            console.log("made login to",this.props.loginpage)
-        }
-        
+          });
     }
     
     handleInputChange=(e)=>{

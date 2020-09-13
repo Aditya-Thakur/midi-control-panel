@@ -3,7 +3,7 @@ const initialState={
     top_bar:true,
     side_bar:true,
     loginpage:true,
-    logged_in:false,
+    log_out:false,
     isRegpage:false,
     recover_pass : false,
     footer : true,
@@ -28,10 +28,10 @@ const reducer = (state=initialState,action) =>{
             ...state,
             loginpage:action.value
         };
-        case actionTypes.LOGGED_IN:
+        case actionTypes.LOG_OUT:
         return{
             ...state,
-            logged_in:action.value
+            log_out:action.value
         };
         case actionTypes.REG_PAGE:
         return{

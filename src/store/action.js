@@ -1,7 +1,7 @@
 export const SIDE_BAR = 'side_bar';
 export const TOP_BAR = 'top_bar';
 export const LOGINPAGE = 'loginpage';
-export const LOGGED_IN = 'logged_in';
+export const LOG_OUT = 'log_out';
 export const REG_PAGE = 'reg_page';
 export const SWITCHTOREG = 'switch_reg';
 export const SWITCHTOLOGIN = 'switch_login';
