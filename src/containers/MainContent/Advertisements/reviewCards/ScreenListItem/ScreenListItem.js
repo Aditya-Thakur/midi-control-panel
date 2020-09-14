@@ -66,12 +66,13 @@ this.usersDataRef.child(this.props.userId+"/userAdvertisementDetails/singleAdver
         .set("2")
       .then(_ => {
         const refundAmount=this.props.screenDetails.screenPrice
+       
         const refundFor=this.props.screenDetails.screenId
         this.usersDataRef.child(this.props.userId+"/userWalletDetails").once('value',(snapshot)=>{
             let transactionsDetails=snapshot.val().transactionsDetails
             const refundDetails={
                 email: "admin@miraivizon.com",
-                orderId: "",
+                orderId: refundFor,
                 phone: "",
                 transactionAmount: refundAmount,
                 transactionDate: 0,
@@ -86,7 +87,7 @@ this.usersDataRef.child(this.props.userId+"/userAdvertisementDetails/singleAdver
             const notify = {
                 topic: this.props.userId,
                 notifyTitle:"Screen Rejected || Amount refunded",
-                notifyBody:"Refund For Scrreen "+refundFor
+                notifyBody:"Refund For Scrreen Id: "+refundFor
               };
           
               axios.post(`https://nodejs-fcm-server.herokuapp.com/notify`, notify )
