@@ -7,6 +7,7 @@ import { Link , Redirect,withRouter} from 'react-router-dom';
 import firebase from '../../firebase/firebase'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
 
 class login extends Component 
 {
@@ -21,6 +22,16 @@ class login extends Component
     }
     componentDidMount() {
         firebase.auth().signOut().then(_=> {
+            const subscribeToken={
+                token:localStorage.getItem("token"),
+                topic:"admin"
+              }
+              axios.post(`https://nodejs-fcm-server.herokuapp.com/notify/unsubscribe`, subscribeToken)
+                .then(res => {
+                  console.log(res);
+                }).catch((e)=>{
+                  console.log(e)
+                })
             // Sign-out successful.
             if(localStorage.getItem("loggedIn")==="true"){
                 localStorage.setItem("loggedIn",false);
@@ -55,7 +66,14 @@ class login extends Component
                     messaging.requestPermission().then(()=>{
                     return messaging.getToken()
                     }).then(token=>{
-                        localStorage.setItem("user_id",user.uid);
+                        const subscribeToken={
+                            token:token,
+                            topic:"admin"
+                          }
+                          axios.post(`https://nodejs-fcm-server.herokuapp.com/notify/subscribe`, subscribeToken)
+                            .then(res => {
+                              console.log(res);
+                              localStorage.setItem("user_id",user.uid);
                         localStorage.setItem("loggedIn",true);
                         localStorage.setItem("token",token);
                         toast.success("Login Successfull.!", {
@@ -68,6 +86,9 @@ class login extends Component
                             progress: undefined,
                             });
                         this.props.UpdateLoginToFalse()
+                            }).catch((e)=>{
+                              console.log(e)
+                            })
                         }).catch((e)=>{
                             toast.error(e.message, {
                                 position: "top-right",

@@ -33,12 +33,12 @@ class ScreenListItem extends Component {
 
     onApprove(e) {
         e.preventDefault();
-        alert(this.props.screenIndex)
         this.usersDataRef = firebase.database().ref('UsersData');
-// this.usersDataRef.child(this.props.userId+"/userAdvertisementDetails/singleAdvertisementDetails/"+this.props.advIndex+"/screens/"+this.props.screenIndex+"/screenAdminComment")
-//         .set("Your Advertisement is Approved");
-// this.usersDataRef.child(this.props.userId+"/userAdvertisementDetails/singleAdvertisementDetails/"+this.props.advIndex+"/screens/"+this.props.screenIndex+"/screenAdvApprovedOn")
-//         .set(this.state.date);
+        console.log(this.props.advIndex,this.props.screenIndex);
+this.usersDataRef.child(this.props.userId+"/userAdvertisementDetails/singleAdvertisementDetails/"+this.props.advIndex+"/screens/"+this.props.screenIndex+"/screenAdminComment")
+        .set("Your Advertisement is Approved");
+this.usersDataRef.child(this.props.userId+"/userAdvertisementDetails/singleAdvertisementDetails/"+this.props.advIndex+"/screens/"+this.props.screenIndex+"/screenAdvApprovedOn")
+        .set(this.state.time);
         this.usersDataRef.child(this.props.userId+"/userAdvertisementDetails/singleAdvertisementDetails/"+this.props.advIndex+"/screens/"+this.props.screenIndex+"/screenApprovedStatus")
         .set("1")
       .then(_ => {
@@ -76,7 +76,7 @@ class ScreenListItem extends Component {
                 transactionId: "refund_ORDER001",
                 transactionMessage: "Refund For Scrreen "+refundFor,
                 transactionMode: "",
-                transactionStatus: "1",
+                transactionStatus: "3",
             }
             transactionsDetails.push(refundDetails);
             this.usersDataRef.child(this.props.userId+"/userWalletDetails/transactionsDetails")

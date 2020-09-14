@@ -23,19 +23,26 @@ class pending_advertisements extends Component {
             snapshot.forEach(userSnapshot => {
                 let data = userSnapshot.val();                
                 if (data.userAdvertisementDetails != null) {
+                    let advIndex=0
                     Object.values(data.userAdvertisementDetails.singleAdvertisementDetails).forEach(adv => {
                         let advScreens = [];
+                        let screenIndex=0
                         Object.values(adv.screens).forEach(screen => {
                             if (screen.screenApprovedStatus == 0) {
+                                screen.index=screenIndex
                                 advScreens.push(screen)
                             }
+                            screenIndex+=1
                         })
+                        // adv.index=advIndex
                         rows.push({
+                            "advIndex":advIndex,
                             "advId":adv.advId,
                             "screens":advScreens,
                             "advData":adv,
                             "userId":data.userId
                         })
+                        advIndex+=1
                     })
                 }
             });
@@ -46,7 +53,7 @@ class pending_advertisements extends Component {
     }
     render() {
 
-        // console.log(this.state.pendingAdvList)
+        console.log(this.state.pendingAdvList)
         return (
             <AUX>
                 <div className="row">

@@ -45,8 +45,8 @@ class ReviewCard extends Component {
                             </div>
                             <div className="collapse show" id={this.props.advId+"collapse_screen"}>
                                 <ul className="list-group list-group-flush">
-                                {this.props.advScreens.map((item,index) =>
-                                <ScreenListItem key={item.screenId} screenIndex={index} screenDetails={item} userId={this.props.userId} advIndex={this.props.advIndex} advScreens={this.props.advScreens} />)}
+                                {this.props.advScreens.map((item) =>
+                                <ScreenListItem key={item.screenId} screenIndex={item.index} screenDetails={item} userId={this.props.userId} advIndex={this.props.advIndex} advScreens={this.props.advScreens} />)}
                                 </ul>
                             </div>
                             <div className="card-body" data-toggle="collapse" data-target={"#"+this.props.advId+"collapse_user_data"} aria-expanded="false" aria-controls={this.props.advId+"collapse_user_data"}>

@@ -30,16 +30,16 @@ class App extends Component {
       return messaging.getToken()
     }).then(token=>{
       console.log('Token: ',token)
-      const subscribeToken={
-        token:token,
-        topic:"admin"
-      }
-      axios.post(`https://nodejs-fcm-server.herokuapp.com/notify/unsubscribe`, subscribeToken)
-        .then(res => {
-          console.log(res);
-        }).catch((e)=>{
-          console.log(e)
-        })
+      // const subscribeToken={
+      //   token:token,
+      //   topic:"admin"
+      // }
+      // axios.post(`https://nodejs-fcm-server.herokuapp.com/notify/unsubscribe`, subscribeToken)
+      //   .then(res => {
+      //     console.log(res);
+      //   }).catch((e)=>{
+      //     console.log(e)
+      //   })
     }).catch((e)=>{
       console.log(e)
     });
