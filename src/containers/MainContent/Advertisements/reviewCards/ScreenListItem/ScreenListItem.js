@@ -8,15 +8,15 @@ class ScreenListItem extends Component {
 
     constructor(props) {
         super(props);
-	this.state = {time: '',};
-        this.usersDataRef = firebase.database().ref('UsersData');
+	      this.state = {
+          time: '',
+        };
+        // this.usersDataRef = firebase.database().ref('UsersData');
         this.onApprove = this.onApprove.bind(this);
         this.onReject = this.onReject.bind(this);
     }
 
     componentDidMount() {
- 	var that = this;
-
     var date = new Date().getDate(); //Current Date
     var month = new Date().getMonth() + 1; //Current Month
     var year = new Date().getFullYear(); //Current Year
@@ -24,7 +24,7 @@ class ScreenListItem extends Component {
     var min = new Date().getMinutes(); //Current Minutes
     var sec = new Date().getSeconds(); //Current Seconds
 
-    that.setState({ date: date + '/' + month + '/' + year + ' ' + hours + ':' + min + ':' + sec, });
+    this.setState({ time: date + '/' + month + '/' + year + ' ' + hours + ':' + min + ':' + sec, });
         // console.log(this.props.screenDetails.screenPrice)
         // this.usersDataRef.child(this.props.userId+"/userAdvertisementDetails/singleAdvertisementDetails/"+this.props.advIndex+"/screens/"+this.props.screenIndex+"/screenApprovedStatus").on('value', (snapshot) => {
         //     console.log(snapshot.val());
@@ -33,11 +33,12 @@ class ScreenListItem extends Component {
 
     onApprove(e) {
         e.preventDefault();
+        alert(this.props.screenIndex)
         this.usersDataRef = firebase.database().ref('UsersData');
-this.usersDataRef.child(this.props.userId+"/userAdvertisementDetails/singleAdvertisementDetails/"+this.props.advIndex+"/screens/"+this.props.screenIndex+"/screenAdminComment")
-        .set("Your Advertisement is Approved");
-this.usersDataRef.child(this.props.userId+"/userAdvertisementDetails/singleAdvertisementDetails/"+this.props.advIndex+"/screens/"+this.props.screenIndex+"/screenAdvApprovedOn")
-        .set("{this.state.date}");
+// this.usersDataRef.child(this.props.userId+"/userAdvertisementDetails/singleAdvertisementDetails/"+this.props.advIndex+"/screens/"+this.props.screenIndex+"/screenAdminComment")
+//         .set("Your Advertisement is Approved");
+// this.usersDataRef.child(this.props.userId+"/userAdvertisementDetails/singleAdvertisementDetails/"+this.props.advIndex+"/screens/"+this.props.screenIndex+"/screenAdvApprovedOn")
+//         .set(this.state.date);
         this.usersDataRef.child(this.props.userId+"/userAdvertisementDetails/singleAdvertisementDetails/"+this.props.advIndex+"/screens/"+this.props.screenIndex+"/screenApprovedStatus")
         .set("1")
       .then(_ => {
@@ -110,7 +111,7 @@ this.usersDataRef.child(this.props.userId+"/userAdvertisementDetails/singleAdver
                     </div>
                     {window.location.pathname==="/reviewed_advertisements"?
                         <div className="col-md-5">
-                        {this.props.screenDetails.screenApprovedStatus===1? <div type="button" disabled className="btn btn-outline-success waves-effect waves-light float-right">Approved</div> : <div type="button" className="btn btn-outline-danger waves-effect waves-light float-right mr-1">Rejected</div>
+                        {this.props.screenDetails.screenApprovedStatus==="1"? <div type="button" disabled className="btn btn-outline-success waves-effect waves-light float-right">Approved</div> : <div type="button" className="btn btn-outline-danger waves-effect waves-light float-right mr-1">Rejected</div>
 
                         }
                         </div>

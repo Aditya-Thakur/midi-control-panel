@@ -18,11 +18,11 @@ class Dashboard extends Component {
         availableLocationsData: {},
         availableLocationsCount: 0,
         user_id: null,
-        revenue:0,
-        rejectedAdv:0,
-        submittedAdv:0,
-        pendingAdv:0,
-        visible:true
+        revenue: 0,
+        rejectedAdv: 0,
+        submittedAdv: 0,
+        pendingAdv: 0,
+        visible: false
 
     }
 
@@ -37,16 +37,16 @@ class Dashboard extends Component {
         const usersDataRef = firebase.database().ref('UsersData');
         usersDataRef.on('value', (snapshot) => {
             let newState = [];
-            let transactionSum=0
-            let totalAdv=0
-            let pendingAdvCount=0
-            let rejectedAdvCount=0
+            let transactionSum = 0
+            let totalAdv = 0
+            let pendingAdvCount = 0
+            let rejectedAdvCount = 0
             snapshot.forEach(userSnapshot => {
                 let data = userSnapshot.val();
-                transactionSum+=data.userWalletDetails.transactionsDetails?this.getTotalInvestment(data.userWalletDetails.transactionsDetails):0
-                rejectedAdvCount+=data.userAdvertisementDetails ? this.countRejectedAds(data.userAdvertisementDetails.singleAdvertisementDetails) : 0
-                pendingAdvCount+=data.userAdvertisementDetails ? this.countPendingAds(data.userAdvertisementDetails.singleAdvertisementDetails) : 0
-                totalAdv+=data.userAdvertisementDetails ? this.countTotalAds(data.userAdvertisementDetails.singleAdvertisementDetails) : 0
+                transactionSum += data.userWalletDetails.transactionsDetails ? this.getTotalInvestment(data.userWalletDetails.transactionsDetails) : 0
+                rejectedAdvCount += data.userAdvertisementDetails ? this.countRejectedAds(data.userAdvertisementDetails.singleAdvertisementDetails) : 0
+                pendingAdvCount += data.userAdvertisementDetails ? this.countPendingAds(data.userAdvertisementDetails.singleAdvertisementDetails) : 0
+                totalAdv += data.userAdvertisementDetails ? this.countTotalAds(data.userAdvertisementDetails.singleAdvertisementDetails) : 0
                 newState.push({
                     userData: data
                 });
@@ -55,10 +55,10 @@ class Dashboard extends Component {
 
             this.setState({
                 usersData: newState,
-                revenue:transactionSum,
-                rejectedAdv:rejectedAdvCount,
-                pendingAdv:pendingAdvCount,
-                submittedAdv:totalAdv
+                revenue: transactionSum,
+                rejectedAdv: rejectedAdvCount,
+                pendingAdv: pendingAdvCount,
+                submittedAdv: totalAdv
             });
         });
         const availableLocationsDataRef = firebase.database().ref('AvailableLocations');
@@ -73,6 +73,7 @@ class Dashboard extends Component {
             this.setState({
                 availableLocationsData: newAvailableLocationState,
                 availableLocationsCount: newAvailableLocationState.length,
+                visible: true
             });
         })
     }
@@ -104,7 +105,7 @@ class Dashboard extends Component {
         let sum = 0
         singleAdvertisementDetails.forEach(advDetails => {
             advDetails.screens.forEach(screenDetails => {
-                    sum += 1
+                sum += 1
             })
         })
         return sum;
@@ -123,121 +124,127 @@ class Dashboard extends Component {
 
     render() {
         //const {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend} = Recharts;
-        return (
+        // return (
+
+        // );
+        const mystyle = {
             
-            <div>
-                <Loader
-         type="Puff"
-         color="#00BFFF"
-         height={100}
-         width={100}
-         timeout={3000} //3 secs
- 
-      />
-                <div className="row">
-                    <div className="col-sm-12">
-                        <div className="page-title-box">
-                            <h4 className="page-title">Dashboard</h4>
-                            <ol className="breadcrumb">
-                                <li className="breadcrumb-item active">
-                                    Welcome to Mirai Vizion Dashboard
+            width: "100px",
+            height: "100px",
+            position: "absolute",
+            top:"0",
+            bottom: "0",
+            left: "15%",
+            right: "0",
+            margin: "auto"
+          };
+        if (this.state.visible === true) {
+            return (
+                <div>
+                    <div className="row">
+                        <div className="col-sm-12">
+                            <div className="page-title-box">
+                                <h4 className="page-title">Dashboard</h4>
+                                <ol className="breadcrumb">
+                                    <li className="breadcrumb-item active">
+                                        Welcome to Mirai Vizion Dashboard
                                         </li>
-                            </ol>
-                            {/* <Tinycharts /> */}
-                        </div>
-                    </div>
-                </div>
-
-                <div className="row">
-                    <div className="col-xl-4 col-md-6">
-                        <div className="card mini-stat bg-primary">
-                            <div className="card-body mini-stat-img">
-                                <div className="mini-stat-icon">
-                                    <i className="mdi mdi-account-multiple float-right"></i>
-                                </div>
-                                <div className="text-white">
-                                    <h6 className="text-uppercase mb-3">NO. OF USER</h6>
-                                    <h4 className="mb-4">{this.state.usersData.length}</h4>
-                                    {/* <span className="badge badge-info"> +11% </span> <span className="ml-2">From previous period</span> */}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-xl-4 col-md-6">
-                        <div className="card mini-stat bg-primary">
-                            <div className="card-body mini-stat-img">
-                                <div className="mini-stat-icon">
-                                    <i className="mdi mdi-map-check float-right"></i>
-                                </div>
-                                <div className="text-white">
-                                    <h6 className="text-uppercase mb-3">ACTIVE LOCATIONS</h6>
-                                    <h4 className="mb-4">{this.state.availableLocationsCount}</h4>
-                                    {/* <span className="badge badge-danger"> -29% </span> <span className="ml-2">From previous period</span> */}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-xl-4 col-md-6">
-                        <div className="card mini-stat bg-primary">
-                            <div className="card-body mini-stat-img">
-                                <div className="mini-stat-icon">
-                                    <i className="mdi mdi-briefcase-check float-right"></i>
-                                </div>
-                                <div className="text-white">
-                                    <h6 className="text-uppercase mb-3">Revenue</h6>
-                                    <h4 className="mb-4"> ₹{this.state.revenue}</h4>
-                                    {/* <span className="badge badge-info"> +89% </span> <span className="ml-2">From previous period</span> */}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-xl-4 col-md-6">
-                        <div className="card mini-stat bg-primary">
-                            <div className="card-body mini-stat-img">
-                                <div className="mini-stat-icon">
-                                    <i className="mdi mdi-tag-text-outline float-right"></i>
-                                </div>
-                                <div className="text-white">
-                                    <h6 className="text-uppercase mb-3">Total Screen Adv Submitted</h6>
-                                    <h4 className="mb-4">{this.state.submittedAdv}</h4>
-                                    {/* <span className="badge badge-warning"> 0% </span> <span className="ml-2">From previous period</span> */}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-xl-4 col-md-6">
-                        <div className="card mini-stat bg-primary">
-                            <div className="card-body mini-stat-img">
-                                <div className="mini-stat-icon">
-                                    <i className="mdi mdi-briefcase-check float-right"></i>
-                                </div>
-                                <div className="text-white">
-                                    <h6 className="text-uppercase mb-3">Total Screen Adv Rejected</h6>
-                                    <h4 className="mb-4">{this.state.rejectedAdv}</h4>
-                                    {/* <span className="badge badge-info"> +89% </span> <span className="ml-2">From previous period</span> */}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-xl-4 col-md-6">
-                        <div className="card mini-stat bg-primary">
-                            <div className="card-body mini-stat-img">
-                                <div className="mini-stat-icon">
-                                    <i className="mdi mdi-briefcase-check float-right"></i>
-                                </div>
-                                <div className="text-white">
-                                    <h6 className="text-uppercase mb-3">Total Screen Adv Pending For Review</h6>
-                                    <h4 className="mb-4">{this.state.pendingAdv}</h4>
-                                    {/* <span className="badge badge-info"> +89% </span> <span className="ml-2">From previous period</span> */}
-                                </div>
+                                </ol>
+                                {/* <Tinycharts /> */}
                             </div>
                         </div>
                     </div>
 
-                </div>
+                    <div className="row">
+                        <div className="col-xl-4 col-md-6">
+                            <div className="card mini-stat bg-primary">
+                                <div className="card-body mini-stat-img">
+                                    <div className="mini-stat-icon">
+                                        <i className="mdi mdi-account-multiple float-right"></i>
+                                    </div>
+                                    <div className="text-white">
+                                        <h6 className="text-uppercase mb-3">NO. OF USER</h6>
+                                        <h4 className="mb-4">{this.state.usersData.length}</h4>
+                                        {/* <span className="badge badge-info"> +11% </span> <span className="ml-2">From previous period</span> */}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-xl-4 col-md-6">
+                            <div className="card mini-stat bg-primary">
+                                <div className="card-body mini-stat-img">
+                                    <div className="mini-stat-icon">
+                                        <i className="mdi mdi-map-check float-right"></i>
+                                    </div>
+                                    <div className="text-white">
+                                        <h6 className="text-uppercase mb-3">ACTIVE LOCATIONS</h6>
+                                        <h4 className="mb-4">{this.state.availableLocationsCount}</h4>
+                                        {/* <span className="badge badge-danger"> -29% </span> <span className="ml-2">From previous period</span> */}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-xl-4 col-md-6">
+                            <div className="card mini-stat bg-primary">
+                                <div className="card-body mini-stat-img">
+                                    <div className="mini-stat-icon">
+                                        <i className="mdi mdi-briefcase-check float-right"></i>
+                                    </div>
+                                    <div className="text-white">
+                                        <h6 className="text-uppercase mb-3">Revenue</h6>
+                                        <h4 className="mb-4"> ₹{this.state.revenue}</h4>
+                                        {/* <span className="badge badge-info"> +89% </span> <span className="ml-2">From previous period</span> */}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-xl-4 col-md-6">
+                            <div className="card mini-stat bg-primary">
+                                <div className="card-body mini-stat-img">
+                                    <div className="mini-stat-icon">
+                                        <i className="mdi mdi-tag-text-outline float-right"></i>
+                                    </div>
+                                    <div className="text-white">
+                                        <h6 className="text-uppercase mb-3">Total Screen Adv Submitted</h6>
+                                        <h4 className="mb-4">{this.state.submittedAdv}</h4>
+                                        {/* <span className="badge badge-warning"> 0% </span> <span className="ml-2">From previous period</span> */}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-xl-4 col-md-6">
+                            <div className="card mini-stat bg-primary">
+                                <div className="card-body mini-stat-img">
+                                    <div className="mini-stat-icon">
+                                        <i className="mdi mdi-briefcase-check float-right"></i>
+                                    </div>
+                                    <div className="text-white">
+                                        <h6 className="text-uppercase mb-3">Total Screen Adv Rejected</h6>
+                                        <h4 className="mb-4">{this.state.rejectedAdv}</h4>
+                                        {/* <span className="badge badge-info"> +89% </span> <span className="ml-2">From previous period</span> */}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-xl-4 col-md-6">
+                            <div className="card mini-stat bg-primary">
+                                <div className="card-body mini-stat-img">
+                                    <div className="mini-stat-icon">
+                                        <i className="mdi mdi-briefcase-check float-right"></i>
+                                    </div>
+                                    <div className="text-white">
+                                        <h6 className="text-uppercase mb-3">Total Screen Adv Pending For Review</h6>
+                                        <h4 className="mb-4">{this.state.pendingAdv}</h4>
+                                        {/* <span className="badge badge-info"> +89% </span> <span className="ml-2">From previous period</span> */}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
 
 
-                {/*             
+                    {/*             
                             <div className="row">
             
                                 <div className="col-xl-3">
@@ -318,7 +325,7 @@ class Dashboard extends Component {
                             </div> */}
 
 
-                {/* <div className="row">
+                    {/* <div className="row">
                                 
                                 <div className="col-xl-4 col-lg-6">
                                     <div className="card m-b-20">
@@ -444,7 +451,7 @@ class Dashboard extends Component {
             
                                 </div>
                             </div> */}
-                {/*                            
+                    {/*                            
                             <div className="row">
                                 <div className="col-xl-6">
                                     <div className="card m-b-20">
@@ -680,11 +687,22 @@ class Dashboard extends Component {
                                     </div>
                                 </div>
                             </div> */}
-            </div>
+                </div>
+            )
+        }
+        else {
+            return (
+                <div style={mystyle}>
+                    <Loader
+                        type="BallTriangle"
+                        color="#7a6fbe "
+                        height={100}
+                        width={100}
 
-
-
-        );
+                    />
+                </div>
+            )
+        }
     }
 }
 
@@ -694,4 +712,4 @@ const mapStatetoProps = state => {
     };
 }
 
-export default connect(mapStatetoProps)(Dashboard);   
+export default connect(mapStatetoProps)(Dashboard);
