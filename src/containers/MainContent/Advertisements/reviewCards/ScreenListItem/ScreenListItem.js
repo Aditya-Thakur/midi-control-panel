@@ -60,6 +60,8 @@ this.usersDataRef.child(this.props.userId+"/userAdvertisementDetails/singleAdver
     onReject(e) {
         e.preventDefault();
         this.usersDataRef = firebase.database().ref('UsersData');
+        this.usersDataRef.child(this.props.userId+"/userAdvertisementDetails/singleAdvertisementDetails/"+this.props.advIndex+"/screens/"+this.props.screenIndex+"/screenAdvApprovedOn")
+        .set(this.state.time);
         this.usersDataRef.child(this.props.userId+"/userAdvertisementDetails/singleAdvertisementDetails/"+this.props.advIndex+"/screens/"+this.props.screenIndex+"/screenApprovedStatus")
         .set("2")
       .then(_ => {
