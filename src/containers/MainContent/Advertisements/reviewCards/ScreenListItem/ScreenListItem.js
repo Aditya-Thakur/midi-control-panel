@@ -47,7 +47,7 @@ this.usersDataRef.child(this.props.userId+"/userAdvertisementDetails/singleAdver
         e.preventDefault();
         this.usersDataRef = firebase.database().ref('UsersData');
         this.usersDataRef.child(this.props.userId+"/userAdvertisementDetails/singleAdvertisementDetails/"+this.props.advIndex+"/screens/"+this.props.screenIndex+"/screenAdvApprovedOn")
-        .set(this.state.time);
+        .set(firebase.database.ServerValue.TIMESTAMP);
         this.usersDataRef.child(this.props.userId+"/userAdvertisementDetails/singleAdvertisementDetails/"+this.props.advIndex+"/screens/"+this.props.screenIndex+"/screenApprovedStatus")
         .set("2")
       .then(_ => {
