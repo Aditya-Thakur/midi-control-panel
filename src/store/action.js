@@ -9,3 +9,5 @@ export const RECOVER_PASS = 'recover_pass';
 export const FOOTER = 'footer';
 export const AUTH = 'authentication'
 export const USER_ID = 'user_id'
+export const NOTIFICATION_COUNT = 'notification_count';
+export const NOTIFICATION_LIST = 'notification_list';

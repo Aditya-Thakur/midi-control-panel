@@ -8,7 +8,9 @@ const initialState={
     recover_pass : false,
     footer : true,
     authentication:false,
-    user_id:null
+    user_id:null,
+    notification_count:0,
+    notification_list:[]
 }
 
 const reducer = (state=initialState,action) =>{
@@ -68,6 +70,16 @@ const reducer = (state=initialState,action) =>{
         return{
             ...state,
             user_id:action.value
+        };
+        case actionTypes.NOTIFICATION_COUNT:
+        return{
+            ...state,
+            notification_count:action.value
+        };
+        case actionTypes.NOTIFICATION_LIST:
+        return{
+            ...state,
+            notification_list:action.value
         };
         default :
         return state;

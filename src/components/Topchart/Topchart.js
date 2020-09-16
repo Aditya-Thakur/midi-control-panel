@@ -1,8 +1,18 @@
 
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-const topchart = ( props ) => (
-    <div className="topbar">
+import { connect } from 'react-redux';
+import * as actionTypes from '../../store/action';
+import AUX from '../../hoc/Aux_';
+import NotificationDropdownList from './NotificationDropdownList'
+
+
+class topchart extends Component {
+
+    render(){
+        return(
+            <AUX>
+                <div className="topbar">
                 <div className="topbar-left">
                     <Link to="/" className="logo">
                         <span>
@@ -25,48 +35,12 @@ const topchart = ( props ) => (
                         </li> */}
 
                         <li className="dropdown notification-list">
-                            <button className=" btn btn-link nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown"   aria-haspopup="false" aria-expanded="false">
+                            <div className=" btn btn-link nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown"   aria-haspopup="false" aria-expanded="false">
                                 <i className="ti-bell noti-icon"></i>
-                    <span className="badge badge-pill badge-danger noti-icon-badge">{props.notificationCount}</span>
-                            </button>
-                            <div className="dropdown-menu dropdown-menu-right dropdown-menu-lg">
-                                
-                                <h6 className="dropdown-item-text">
-                                    Notifications (258)
-                                </h6>
-                                <div className="slimscroll notification-item-list">
-                                
-                                    <button  className="btn btn-link dropdown-item notify-item active">
-                                        <div className="notify-icon bg-success"><i className="mdi mdi-cart-outline"></i></div>
-                                        <p className="notify-details">Your order is placed<span className="text-muted">Dummy text of the printing and typesetting industry.</span></p>
-                                    </button>
-                                    
-                                    <button  className="btn btn-link dropdown-item notify-item">
-                                        <div className="notify-icon bg-warning"><i className="mdi mdi-message"></i></div>
-                                        <p className="notify-details">New Message received<span className="text-muted">You have 87 unread messages</span></p>
-                                    </button>
-                                    
-                                    <button  className="btn btn-link dropdown-item notify-item">
-                                        <div className="notify-icon bg-info"><i className="mdi mdi-martini"></i></div>
-                                        <p className="notify-details">Your item is shipped<span className="text-muted">It is a long established fact that a reader will</span></p>
-                                    </button>
-                                    
-                                    <button  className="btn btn-link dropdown-item notify-item">
-                                        <div className="notify-icon bg-primary"><i className="mdi mdi-cart-outline"></i></div>
-                                        <p className="notify-details">Your order is placed<span className="text-muted">Dummy text of the printing and typesetting industry.</span></p>
-                                    </button>
-                                    
-                                    <button  className="btn btn-link dropdown-item notify-item">
-                                        <div className="notify-icon bg-danger"><i className="mdi mdi-message"></i></div>
-                                        <p className="notify-details">New Message received<span className="text-muted">You have 87 unread messages</span></p>
-                                    </button>
-                                </div>
-                            
-                                <button  className="btn btn-link dropdown-item text-center text-primary">
-                                    View all <i className="fi-arrow-right"></i>
-                                </button>
-                            </div>        
-                        </li>
+                    <span className="badge badge-pill badge-danger noti-icon-badge">{this.props.notification_count}</span>
+                            </div>
+                            {/* <NotificationDropdownList/> */}
+                            </li>
                         <li className="dropdown notification-list">
                             <div className="dropdown notification-list nav-pro-img">
                                 <button className="btn btn-link dropdown-toggle nav-link arrow-none waves-effect nav-user" data-toggle="dropdown"   aria-haspopup="false" aria-expanded="false">
@@ -74,10 +48,10 @@ const topchart = ( props ) => (
                                 </button>
                                 <div className="dropdown-menu dropdown-menu-right profile-dropdown ">
                                     
-                                    <button className="btn btn-link dropdown-item" ><i className="mdi mdi-account-circle m-r-5"></i> Profile</button>
+                                    {/* <button className="btn btn-link dropdown-item" ><i className="mdi mdi-account-circle m-r-5"></i> Profile</button>
                                     <button className="btn btn-link dropdown-item" ><i className="mdi mdi-wallet m-r-5"></i> My Wallet</button>
                                     <button className="btn btn-link dropdown-item d-block" ><span className="badge badge-success float-right">11</span><i className="mdi mdi-settings m-r-5"></i> Settings</button>
-                                    <button className="btn btn-link dropdown-item" ><i className="mdi mdi-lock-open-outline m-r-5"></i> Lock screen</button>
+                                    <button className="btn btn-link dropdown-item" ><i className="mdi mdi-lock-open-outline m-r-5"></i> Lock screen</button> */}
                                     <div className="dropdown-divider"></div>
                                     <Link to="/login" className="btn btn-link dropdown-item text-danger" ><i className="mdi mdi-power text-danger"></i> Logout</Link>
                                 </div>                                                                    
@@ -112,7 +86,21 @@ const topchart = ( props ) => (
                 </nav>
 
             </div>
-   
-);
+            </AUX>
+        )
+    }
+    
+}
 
-export default topchart;
+const mapStateToProps = state => ({
+    notification_count:state.ui_red.notification_count,
+    notification_list:state.ui_red.notification_list
+})
+const mapDispatchtoProps = dispatch => {
+    return {
+        UpdateNotificationCount:(count)=>dispatch({ type: actionTypes.NOTIFICATION_COUNT,value:count }),
+        UpdateNotificationList:(notifyList)=>dispatch({ type: actionTypes.NOTIFICATION_LIST,value:notifyList })
+    };
+}
+
+export default connect(mapStateToProps,mapDispatchtoProps)(topchart);

@@ -11,24 +11,11 @@ class ScreenListItem extends Component {
 	      this.state = {
           time: '',
         };
-        // this.usersDataRef = firebase.database().ref('UsersData');
         this.onApprove = this.onApprove.bind(this);
         this.onReject = this.onReject.bind(this);
     }
 
     componentDidMount() {
-    var date = new Date().getDate(); //Current Date
-    var month = new Date().getMonth() + 1; //Current Month
-    var year = new Date().getFullYear(); //Current Year
-    var hours = new Date().getHours(); //Current Hours
-    var min = new Date().getMinutes(); //Current Minutes
-    var sec = new Date().getSeconds(); //Current Seconds
-
-    this.setState({ time: date + '/' + month + '/' + year + ' ' + hours + ':' + min + ':' + sec, });
-        // console.log(this.props.screenDetails.screenPrice)
-        // this.usersDataRef.child(this.props.userId+"/userAdvertisementDetails/singleAdvertisementDetails/"+this.props.advIndex+"/screens/"+this.props.screenIndex+"/screenApprovedStatus").on('value', (snapshot) => {
-        //     console.log(snapshot.val());
-        // });
     }
 
     onApprove(e) {
@@ -38,7 +25,7 @@ class ScreenListItem extends Component {
 this.usersDataRef.child(this.props.userId+"/userAdvertisementDetails/singleAdvertisementDetails/"+this.props.advIndex+"/screens/"+this.props.screenIndex+"/screenAdminComment")
         .set("Your Advertisement is Approved");
 this.usersDataRef.child(this.props.userId+"/userAdvertisementDetails/singleAdvertisementDetails/"+this.props.advIndex+"/screens/"+this.props.screenIndex+"/screenAdvApprovedOn")
-        .set(this.state.time);
+        .set(firebase.database.ServerValue.TIMESTAMP);
         this.usersDataRef.child(this.props.userId+"/userAdvertisementDetails/singleAdvertisementDetails/"+this.props.advIndex+"/screens/"+this.props.screenIndex+"/screenApprovedStatus")
         .set("1")
       .then(_ => {
@@ -47,7 +34,6 @@ this.usersDataRef.child(this.props.userId+"/userAdvertisementDetails/singleAdver
             notifyTitle:"Hurray!!",
             notifyBody:"Scrreen Approved "+this.props.screenDetails.screenId
           };
-      
           axios.post(`https://nodejs-fcm-server.herokuapp.com/notify`, notify )
             .then(res => {
               console.log(res);
@@ -72,7 +58,7 @@ this.usersDataRef.child(this.props.userId+"/userAdvertisementDetails/singleAdver
                 orderId: "",
                 phone: "",
                 transactionAmount: refundAmount,
-                transactionDate: 0,
+                transactionDate: firebase.database.ServerValue.TIMESTAMP,
                 transactionId: "refund_ORDER001",
                 transactionMessage: "Refund For Scrreen "+refundFor,
                 transactionMode: "",
@@ -86,7 +72,6 @@ this.usersDataRef.child(this.props.userId+"/userAdvertisementDetails/singleAdver
                 notifyTitle:"Screen Rejected || Amount refunded",
                 notifyBody:"Refund For Scrreen "+refundFor
               };
-          
               axios.post(`https://nodejs-fcm-server.herokuapp.com/notify`, notify )
                 .then(res => {
                   console.log(res);
@@ -95,14 +80,11 @@ this.usersDataRef.child(this.props.userId+"/userAdvertisementDetails/singleAdver
                 alert("Screen Rejected.")
         })
         })
-
       });
     }
 
 
     render() {
-
-    // console.log(window.location.pathname);
         return <AUX>
             <li className="list-group-item" key={this.props.screenDetails.screenId}>{this.props.screenDetails.screenId}
                                 <div className="row">
@@ -112,7 +94,6 @@ this.usersDataRef.child(this.props.userId+"/userAdvertisementDetails/singleAdver
                     {window.location.pathname==="/reviewed_advertisements"?
                         <div className="col-md-5">
                         {this.props.screenDetails.screenApprovedStatus==="1"? <div type="button" disabled className="btn btn-outline-success waves-effect waves-light float-right">Approved</div> : <div type="button" className="btn btn-outline-danger waves-effect waves-light float-right mr-1">Rejected</div>
-
                         }
                         </div>
                         :

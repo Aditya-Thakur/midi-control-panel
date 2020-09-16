@@ -29,7 +29,7 @@ class App extends Component {
     messaging.requestPermission().then(()=>{
       return messaging.getToken()
     }).then(token=>{
-      console.log('Token: ',token)
+      // console.log('Token: ',token)
       // const subscribeToken={
       //   token:token,
       //   topic:"admin"
@@ -44,10 +44,11 @@ class App extends Component {
       console.log(e)
     });
     messaging.onMessage((payload)=>{
-      console.log(payload);
-      this.setState({
-        notificationCount:this.state.notificationCount+1
-      });
+      console.log(payload,this.props.notification_count);
+      this.props.UpdateNotificationCount(this.props.notification_count+1)
+      let localNotifyList=this.props.notification_list
+      localNotifyList.push(payload.notification)
+      this.props.UpdateNotificationList(localNotifyList)
       toast(payload.notification.title, {
         position: "top-right",
         autoClose: 5000,
@@ -57,7 +58,7 @@ class App extends Component {
         draggable: true,
         progress: undefined,
         });
-      
+      console.log(this.props.notification_list)
     });
 
   }
@@ -104,7 +105,7 @@ class App extends Component {
   render() {
     let layout = null;
       layout = (
-        <Layout topbar={this.props.topbar} sidebar = {this.props.sidebar}  footer = {this.props.footer} notificationCount={this.state.notificationCount} isloginpage={!this.state.isAuth}>
+        <Layout topbar={this.props.topbar} sidebar = {this.props.sidebar}  footer = {this.props.footer} notificationCount={this.props.notification_count} isloginpage={!this.state.isAuth}>
           <ToastContainer />
           <Switch>  
           {!this.state.isAuth?
@@ -125,12 +126,16 @@ const mapStatetoProps = state =>{
       topbar: state.ui_red.top_bar,
       sidebar:state.ui_red.side_bar,
       loginpage:state.ui_red.loginpage,
-      footer:state.ui_red.footer
+      footer:state.ui_red.footer,
+      notification_count:state.ui_red.notification_count,
+      notification_list:state.ui_red.notification_list
   };
 }
 const mapDispatchtoProps = dispatch => {
   return {
       UpdateUser: (uid) => dispatch({ type: actionTypes.USER_ID,value:uid }),
+      UpdateNotificationCount:(count)=>dispatch({ type: actionTypes.NOTIFICATION_COUNT,value:count }),
+      UpdateNotificationList:(notifyList)=>dispatch({ type: actionTypes.NOTIFICATION_LIST,value:notifyList })
   };
 }
 
