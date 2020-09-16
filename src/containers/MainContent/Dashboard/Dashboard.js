@@ -174,7 +174,7 @@ class Dashboard extends Component {
                             <div className="card mini-stat bg-primary">
                                 <div className="card-body mini-stat-img">
                                     <div className="mini-stat-icon">
-                                        <i className="mdi mdi-map-check float-right"></i>
+                                        <i className="mdi mdi-google-maps float-right"></i>
                                     </div>
                                     <div className="text-white">
                                         <h6 className="text-uppercase mb-3">ACTIVE LOCATIONS</h6>
@@ -188,7 +188,7 @@ class Dashboard extends Component {
                             <div className="card mini-stat bg-primary">
                                 <div className="card-body mini-stat-img">
                                     <div className="mini-stat-icon">
-                                        <i className="mdi mdi-briefcase-check float-right"></i>
+                                        <i className="ion-arrow-graph-up-right float-right"></i>
                                     </div>
                                     <div className="text-white">
                                         <h6 className="text-uppercase mb-3">Revenue</h6>
@@ -202,7 +202,7 @@ class Dashboard extends Component {
                             <div className="card mini-stat bg-primary">
                                 <div className="card-body mini-stat-img">
                                     <div className="mini-stat-icon">
-                                        <i className="mdi mdi-tag-text-outline float-right"></i>
+                                        <i className="ion-ios7-monitor float-right"></i>
                                     </div>
                                     <div className="text-white">
                                         <h6 className="text-uppercase mb-3">Total Screen Adv Submitted</h6>
@@ -216,7 +216,7 @@ class Dashboard extends Component {
                             <div className="card mini-stat bg-primary">
                                 <div className="card-body mini-stat-img">
                                     <div className="mini-stat-icon">
-                                        <i className="mdi mdi-briefcase-check float-right"></i>
+                                        <i className="ion-ios7-monitor-outline float-right"></i>
                                     </div>
                                     <div className="text-white">
                                         <h6 className="text-uppercase mb-3">Total Screen Adv Rejected</h6>
@@ -230,7 +230,7 @@ class Dashboard extends Component {
                             <div className="card mini-stat bg-primary">
                                 <div className="card-body mini-stat-img">
                                     <div className="mini-stat-icon">
-                                        <i className="mdi mdi-briefcase-check float-right"></i>
+                                        <i className="mdi mdi-human-greeting float-right"></i>
                                     </div>
                                     <div className="text-white">
                                         <h6 className="text-uppercase mb-3">Total Screen Adv Pending For Review</h6>

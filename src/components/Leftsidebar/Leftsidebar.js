@@ -26,7 +26,7 @@ class leftsidebar extends Component {
                                 <li className="menu-title">Main</li>
                                 <li>
                                     <Link to='/dashboard' className={this.state.Tab == 'dashboard' ? 'waves-effect active':'waves-effect'} onClick={this.setActiveTab.bind(this, 'dashboard','','')} >
-                                        <i className="mdi mdi-view-dashboard"></i><span className="badge badge-primary badge-pill float-right">2</span> <span> Dashboard </span>
+                                        <i className="mdi mdi-view-dashboard"></i><span className="badge badge-primary badge-pill float-right"><i className="ion-ios7-home"></i></span> <span> Dashboard </span>
                                     </Link>
                                 </li>
                                 <li>

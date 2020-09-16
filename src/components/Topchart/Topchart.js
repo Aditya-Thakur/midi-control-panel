@@ -34,10 +34,10 @@ class topchart extends Component {
                             </form> 
                         </li> */}
 
-                        <li className="dropdown notification-list">
+                        <li className="dropdown notification-list" onClick={()=>(this.props.UpdateNotificationCount(0))}>
                             <div className=" btn btn-link nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown"   aria-haspopup="false" aria-expanded="false">
                                 <i className="ti-bell noti-icon"></i>
-                    <span className="badge badge-pill badge-danger noti-icon-badge">{this.props.notification_count}</span>
+                                <span className="badge badge-pill badge-danger noti-icon-badge">{this.props.notification_count}</span>
                             </div>
                             {/* <NotificationDropdownList/> */}
                             </li>

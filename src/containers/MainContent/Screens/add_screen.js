@@ -126,9 +126,9 @@ alert(e)
                       <select className="form-control select2" ref={(c) => this.screenCity = c}>
                         <option>Select</option>
                         <optgroup label="Available Locations">
+                          <option value="Indore, Madhya Pradesh">Indore, Madhya Pradesh</option>
+                          <option value="Greater Noida, Uttar Pradesh">Greater Noida, Uttar Pradesh</option>
                           <option value="Delhi">Delhi</option>
-                          <option value="Greater Noida">Greater Noida</option>
-                          <option value="Madhya Pradesh">Madhya Pradesh</option>
                         </optgroup>
                       </select></div>
                   </div>
