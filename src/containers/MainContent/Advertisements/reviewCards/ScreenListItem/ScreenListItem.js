@@ -32,7 +32,7 @@ this.usersDataRef.child(this.props.userId+"/userAdvertisementDetails/singleAdver
         const notify = {
             topic: "weather",
             notifyTitle:"Hurray!!",
-            notifyBody:"Scrreen Approved "+this.props.screenDetails.screenId
+            notifyBody:"Advertisement Approved for Screen Id: "+this.props.screenDetails.screenId
           };
           axios.post(`https://nodejs-fcm-server.herokuapp.com/notify`, notify )
             .then(res => {
@@ -72,8 +72,8 @@ this.usersDataRef.child(this.props.userId+"/userAdvertisementDetails/singleAdver
         .set(transactionsDetails).then(_=>{
             const notify = {
                 topic: this.props.userId,
-                notifyTitle:"Screen Rejected || Amount refunded",
-                notifyBody:"Refund For Scrreen Id: "+refundFor
+                notifyTitle:"Screen Rejected ",
+                notifyBody:"Refund For Scrreen Id: "+refundFor +" has been initiated"
               };
               axios.post(`https://nodejs-fcm-server.herokuapp.com/notify`, notify )
                 .then(res => {
