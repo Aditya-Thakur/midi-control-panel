@@ -5,7 +5,6 @@ import { Route,Switch } from 'react-router-dom';
 import mainbuilder from './containers/mainbuilder/mainbuilder';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import axios from 'axios';
 import firebase from './firebase/firebase'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
